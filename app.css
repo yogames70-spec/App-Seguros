@@ -226,3 +226,6 @@ header{padding:16px 20px;display:flex;align-items:center;justify-content:space-b
 .estrategia-ejemplo{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--accent1)}
 .estrategia-ejemplo-title{font-size:11px;font-weight:700;color:var(--accent1);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
 .estrategia-ejemplo-text{font-size:13px;line-height:1.7;color:var(--text);white-space:pre-wrap;font-family:'Inter',sans-serif;margin:0}
+.estrategia-tips{margin-top:12px;padding:12px;background:rgba(124,92,252,0.04);border-radius:var(--radius-sm);border:1px solid rgba(124,92,252,0.1)}
+.estrategia-tip-item{font-size:13px;color:var(--text);line-height:1.6;padding:4px 0}
+.ventas-frase.gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 6s ease infinite;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;font-weight:600;line-height:1.5}
