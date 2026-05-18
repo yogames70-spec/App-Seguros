@@ -162,7 +162,11 @@ header{padding:16px 20px;display:flex;align-items:center;justify-content:space-b
 .sim-option:active{transform:scale(.98);border-color:var(--accent2)}
 .sim-msg.context{background:linear-gradient(135deg,rgba(124,92,252,.06),rgba(0,200,150,.04));border:1px solid rgba(124,92,252,.12);align-self:stretch;max-width:100%;font-style:italic;color:var(--text2);border-radius:var(--radius)}
 .sim-msg.feedback{align-self:stretch;max-width:100%;padding:12px 16px;border-radius:var(--radius-sm);font-size:13px;line-height:1.5}
+.sim-msg.feedback.good{background:rgba(0,200,150,.06);border:1px solid rgba(0,200,150,.15)}
+.sim-msg.feedback.bad{background:rgba(255,90,138,.06);border:1px solid rgba(255,90,138,.15)}
 .sim-msg.feedback .sender{margin-bottom:4px}
+.sim-msg.correction{align-self:stretch;max-width:100%;padding:12px 16px;border-radius:var(--radius-sm);font-size:13px;line-height:1.5;background:rgba(124,92,252,.06);border:1px dashed rgba(124,92,252,.25);color:var(--text)}
+.sim-msg.correction .sender{margin-bottom:4px;color:var(--accent1);font-weight:700}
 .sim-question{background:var(--card);border:2px solid var(--accent2);border-radius:var(--radius);padding:16px;margin-bottom:12px;font-size:14px;font-weight:600;color:var(--text);line-height:1.5}
 .sim-scenario-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
 .sim-scenario-card:active{transform:scale(.98)}
@@ -232,4 +236,4 @@ header{padding:16px 20px;display:flex;align-items:center;justify-content:space-b
 .estrategia-ejemplo-text{font-size:13px;line-height:1.7;color:var(--text);white-space:pre-wrap;font-family:'Inter',sans-serif;margin:0}
 .estrategia-tips{margin-top:12px;padding:12px;background:rgba(124,92,252,0.04);border-radius:var(--radius-sm);border:1px solid rgba(124,92,252,0.1)}
 .estrategia-tip-item{font-size:13px;color:var(--text);line-height:1.6;padding:4px 0}
-.ventas-frase.gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 6s ease infinite;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;font-weight:600;line-height:1.5}
+.ventas-frase.gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;font-weight:800;line-height:1.4}
