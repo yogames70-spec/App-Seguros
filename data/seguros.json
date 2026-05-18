@@ -1,0 +1,377 @@
+{
+  "meta": {
+    "fuente": "BancoEstado Corredores de Seguros",
+    "actualizado": "2025-05",
+    "telefono": "600 660 1212"
+  },
+  "categorias": [
+    {
+      "id": "vehiculos",
+      "nombre": "Vehículos",
+      "aseguradora": "HDI Seguros",
+      "productos": [
+        {
+          "id": "auto-particular",
+          "nombre": "Seguro Automotriz Particular",
+          "descripcion": "Cobertura integral contra daños, colisión y responsabilidad civil para vehículos de uso privado.",
+          "coberturas": [
+            "Daños materiales al vehículo (choque, volcamiento, etc.)",
+            "Robo, hurto o uso no autorizado del vehículo",
+            "Responsabilidad civil por daños a terceros (hasta 3.000 UF)",
+            "Asistencia en ruta 24/7",
+            "Auto de reemplazo (con copago, límite de días según plan)",
+            "Deducible inteligente: no aplica si el culpable es un tercero identificado"
+          ],
+          "requisitos": [
+            "Vehículo con antigüedad máxima de 15 años",
+            "Conductor debe ser el propietario con licencia vigente",
+            "Uso estrictamente particular (no comercial ni recreativo)",
+            "Inspección obligatoria para vehículos usados (presencial o digital)"
+          ],
+          "deducibles_uf": [0, 3, 5, 10],
+          "nota_deducible": "A mayor deducible, menor prima mensual. Con deducible 0 UF se paga más pero no hay gasto adicional en siniestro.",
+          "perdida_total": "Se considera pérdida total cuando el costo de reparación supera el 65%-70% del valor comercial del vehículo.",
+          "exclusiones": ["Conducción bajo influencia de alcohol/drogas", "Uso en competencias", "Desgaste natural", "Actos intencionales del asegurado"]
+        },
+        {
+          "id": "auto-comercial",
+          "nombre": "Seguro Automotriz Comercial",
+          "descripcion": "Protección para vehículos de uso comercial: delivery, carga, transporte empresarial.",
+          "coberturas": [
+            "Daños materiales por choque, volcamiento, incendio",
+            "Responsabilidad civil ante terceros",
+            "Robo y hurto",
+            "Asistencia en ruta"
+          ],
+          "requisitos": [
+            "Vehículo con antigüedad menor a 15 años",
+            "Propietario del vehículo con licencia vigente",
+            "Inspección obligatoria"
+          ],
+          "deducibles_uf": [0, 3, 5, 10]
+        },
+        {
+          "id": "auto-perdida-total",
+          "nombre": "Seguro Automotriz Pérdida Total",
+          "descripcion": "Opción económica que cubre únicamente la pérdida total o destrucción completa del vehículo. Ideal para autos antiguos.",
+          "coberturas": [
+            "Pérdida total por daños que superen 65-70% del valor comercial",
+            "Robo total sin recuperación"
+          ],
+          "requisitos": [
+            "Vehículo con antigüedad menor a 20 años",
+            "Propietario con licencia vigente",
+            "Uso particular exclusivo",
+            "Inspección obligatoria"
+          ],
+          "ventaja_venta": "Precio muy bajo comparado con seguro completo. Perfecto para clientes con autos de más de 10 años que solo quieren protección contra robo total o pérdida total."
+        },
+        {
+          "id": "soap-personal",
+          "nombre": "SOAP 2026 Personal",
+          "descripcion": "Seguro Obligatorio de Accidentes Personales. Obligatorio por ley para renovar el permiso de circulación.",
+          "precio": "Desde $8.990 para automóviles",
+          "coberturas": [
+            "Muerte del conductor o pasajeros por accidente de tránsito",
+            "Gastos médicos y hospitalarios por accidente vehicular",
+            "Incapacidad permanente por accidente de tránsito"
+          ],
+          "canales_pago": ["Online en bancoestado.cl", "Cajeros automáticos BancoEstado", "Sucursales"],
+          "tip_venta": "Todo auto NECESITA SOAP para circular. Es venta segura, el cliente no puede rechazarlo. Ofrécelo siempre junto al permiso de circulación."
+        },
+        {
+          "id": "soap-transporte",
+          "nombre": "SOAP Taxi, Bus y Minibús",
+          "descripcion": "SOAP especializado para transporte público y comercial de pasajeros.",
+          "precios": {
+            "taxi_basico_ejecutivo_turismo": "$19.920 - $21.840",
+            "taxi_colectivo": "$25.910",
+            "minibus_particular_escolar_turismo": "$23.500 - $24.470",
+            "bus_escolar_particular": "$69.440",
+            "bus_rural": "$104.260"
+          }
+        },
+        {
+          "id": "rci",
+          "nombre": "Responsabilidad Civil Internacional (RCI)",
+          "descripcion": "Cobertura obligatoria de responsabilidad civil para viajar en vehículo a países vecinos (Argentina, etc.).",
+          "requisitos": [
+            "Mayor de 18 años",
+            "Licencia de conducir vigente",
+            "Vehículo no registrado en el país de destino"
+          ],
+          "precios": {
+            "1_dia": "$13.303 (USD 13.78)",
+            "15_dias": "$51.894 (USD 53.74)"
+          },
+          "tip_venta": "Temporada alta de viajes a Argentina = oportunidad de venta masiva. Recordar a clientes con autos que van a cruzar la frontera."
+        },
+        {
+          "id": "macrozona-sur",
+          "nombre": "Macrozona Sur - Vehículos Pesados",
+          "descripcion": "Protección especializada para maquinaria pesada y equipos móviles en la macrozona sur de Chile.",
+          "requisitos": [
+            "Medio de pago BancoEstado",
+            "Comprobante de propiedad",
+            "Antigüedad máxima 28 años (o informes diagnósticos si es mayor)",
+            "Inspección obligatoria"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vida-salud",
+      "nombre": "Vida y Salud",
+      "aseguradora": "MetLife",
+      "productos": [
+        {
+          "id": "sonap",
+          "nombre": "Seguro Oncológico y Muerte Accidental (SONAP)",
+          "descripcion": "Apoyo económico ante diagnóstico de cáncer por primera vez y compensación familiar por muerte accidental. Producto estrella de BancoEstado.",
+          "coberturas": [
+            "Indemnización única de libre disposición ante diagnóstico de cáncer primario: hasta 600 UF",
+            "Capital por muerte accidental: hasta 1.200 UF",
+            "Gastos funerarios por fallecimiento de carga: hasta 15 UF",
+            "Orientación médica telefónica 24/7",
+            "Exámenes preventivos anuales (mamografía, PAP, antígeno prostático)",
+            "Chequeos de laboratorio preventivos con tope en UF"
+          ],
+          "precio_desde": "0,1600 UF mensuales",
+          "requisitos": [
+            "Edad: 18 a 78 años (permanencia máxima hasta 79)",
+            "Titular de cuenta BancoEstado"
+          ],
+          "condiciones": {
+            "diagnostico": "Requiere informe de biopsia que confirme diagnóstico de cáncer primario",
+            "plazo_aviso": "240 días corridos desde descubrimiento de la enfermedad",
+            "exclusiones": "Enfermedades preexistentes, cánceres previamente diagnosticados"
+          },
+          "planes": ["50 UF", "80 UF", "300 UF", "600 UF según convenio"],
+          "tip_venta": "El cáncer es la primera causa de muerte en Chile. 1 de cada 3 personas lo desarrollará. Con 0,16 UF al mes (~$6.000) el cliente queda protegido. Es el seguro más fácil de vender por su bajo costo y alto impacto emocional."
+        },
+        {
+          "id": "full-ambulatorio",
+          "nombre": "Seguro Full Ambulatorio",
+          "descripcion": "Reembolso de gastos médicos ambulatorios: consultas, exámenes diagnósticos, cirugía ambulatoria. No cubre hospitalización.",
+          "coberturas": [
+            "Reembolso del 70% de consultas médicas ambulatorias",
+            "Reembolso de exámenes diagnósticos",
+            "Cirugía ambulatoria",
+            "Topes máximos preestablecidos por tipo de prestación",
+            "Sin deducible"
+          ],
+          "requisitos": [
+            "Titular: 18 a 59 años (permanencia hasta 64)",
+            "Hijos: desde 14 días hasta 22 años",
+            "Declaración Personal de Salud (DPS) obligatoria"
+          ],
+          "tip_venta": "Ideal para personas que van mucho al médico pero no quieren pagar seguro completo. Complementa FONASA o Isapre."
+        },
+        {
+          "id": "full-complementario",
+          "nombre": "Seguro Full Complementario de Salud",
+          "descripcion": "Plan de salud amplio que cubre ambulatorio + hospitalización + salud mental + maternidad + cirugía bariátrica.",
+          "coberturas": [
+            "Consultas ambulatorias y exámenes",
+            "Hospitalización completa",
+            "Salud mental y psiquiatría",
+            "Maternidad",
+            "Cirugía bariátrica"
+          ],
+          "requisitos": ["Declaración de salud", "Límites de edad según plan"],
+          "tip_venta": "Es el seguro de salud más completo. Cubre TODO. Ideal para familias jóvenes que planean tener hijos."
+        },
+        {
+          "id": "muerte-accidental-ahorro",
+          "nombre": "Seguro Muerte Accidental con Ahorro",
+          "descripcion": "Seguro dual: protección por muerte accidental + el 50% de la prima va a un fondo de ahorro garantizado.",
+          "coberturas": [
+            "Capital asegurado por muerte accidental",
+            "50% de cada prima se destina a ahorro garantizado",
+            "Rentabilidad garantizada: 1% + UF anual"
+          ],
+          "planes": [
+            {"nombre": "Plan 1", "capital_uf": 350},
+            {"nombre": "Plan 2", "capital_uf": 600},
+            {"nombre": "Plan 3", "capital_uf": 900},
+            {"nombre": "Plan 4", "capital_uf": 1200},
+            {"nombre": "Plan 5", "capital_uf": 1600}
+          ],
+          "requisitos": ["Edad: 18 a 78 años", "Medio de pago BancoEstado"],
+          "tip_venta": "ARGUMENTO CLAVE: 'No es un gasto, es ahorro + protección. La mitad de lo que paga se lo devolvemos con intereses. Si no le pasa nada, igual gana dinero.'"
+        },
+        {
+          "id": "a-tu-medida",
+          "nombre": "Seguro a tu Medida",
+          "descripcion": "Seguro flexible donde el cliente elige combinaciones de: vida, oncología, renta diaria hospitalaria (2 UF/día), y opción de ahorro del 50%.",
+          "coberturas": [
+            "Módulo Vida: capital por fallecimiento",
+            "Módulo Oncológico: indemnización por cáncer",
+            "Módulo Hospitalización: 2 UF por cada día hospitalizado",
+            "Módulo Ahorro: 50% de prima a fondo garantizado"
+          ],
+          "tip_venta": "Perfecto para el cliente que dice 'quiero algo pero no sé qué'. Le armas el seguro a la medida de su bolsillo y necesidades."
+        },
+        {
+          "id": "vida-invalidez",
+          "nombre": "Seguro de Vida e Invalidez",
+          "descripcion": "Protección básica: pago de capital asegurado por muerte natural/accidental o invalidez total permanente.",
+          "planes_capital_uf": [300, 500, 700, 1000, 1500],
+          "requisitos": ["Edad: 18 a 78 años", "Declaración simple de salud"],
+          "tip_venta": "Seguro clásico y económico. Para el cliente que quiere dejar protegida a su familia sin gastar mucho."
+        },
+        {
+          "id": "vida-cuentas-ahorro",
+          "nombre": "Seguro de Vida Cuentas de Ahorro (Estudio Seguro)",
+          "descripcion": "Seguro de vida asociado a metas de ahorro educacional. Si el titular fallece, el banco completa la meta de ahorro para los estudios del hijo.",
+          "meta_ahorro_uf": {"minimo": 50, "maximo": 1000},
+          "tip_venta": "Para padres con hijos. 'Si a usted le pasa algo, nosotros completamos el ahorro para la universidad de su hijo.'"
+        },
+        {
+          "id": "hospitalizacion",
+          "nombre": "Seguro Hospitalización",
+          "descripcion": "Paga un monto fijo diario por cada día que el asegurado esté hospitalizado por accidente o enfermedad.",
+          "coberturas": ["Renta diaria fija por hospitalización", "Cubre accidente y enfermedad"],
+          "requisitos": ["Titular: 18 a 78 años", "Hijos: desde 14 días"],
+          "tip_venta": "Complemento perfecto. Mientras está en el hospital, este seguro le paga una 'renta' diaria para cubrir gastos extras que la Isapre/Fonasa no cubre."
+        },
+        {
+          "id": "maxima-proteccion",
+          "nombre": "Seguro Máxima Protección",
+          "descripcion": "El seguro premium de BancoEstado. Combina vida, muerte accidental, invalidez y enfermedades catastróficas con los capitales más altos.",
+          "coberturas": [
+            "Muerte accidental: hasta 6.000 UF",
+            "Enfermedades catastróficas: hasta 900 UF",
+            "Invalidez total y permanente",
+            "Muerte natural"
+          ],
+          "tip_venta": "Para clientes con alto patrimonio o ingresos altos. Es el plan más completo y con mayor cobertura."
+        },
+        {
+          "id": "salud-pyme",
+          "nombre": "Complementario de Salud Pyme",
+          "descripcion": "Seguro de salud grupal diseñado para pequeñas y medianas empresas.",
+          "requisitos": [
+            "Mínimo 5 trabajadores",
+            "Deben representar al menos 75% de la dotación activa",
+            "Trabajadores con contrato indefinido"
+          ],
+          "tip_venta": "Oportunidad enorme con empresarios Pyme. 'Ofrezca salud complementaria a sus empleados y mejore su retención de talento.'"
+        }
+      ]
+    },
+    {
+      "id": "hogar",
+      "nombre": "Hogar",
+      "aseguradora": "HDI Seguros",
+      "productos": [
+        {
+          "id": "incendio-hogar",
+          "nombre": "Seguro Incendio Hogar",
+          "descripcion": "Protección contra incendio para la estructura y/o contenido de una vivienda.",
+          "coberturas": [
+            "Incendio de estructura: hasta 3.000 UF",
+            "Contenido (muebles, electrodomésticos): hasta 450 UF",
+            "Opcional: sismo, inundación, maremoto, tsunami",
+            "Opcional: daños por naturaleza (avalanchas, aluviones, deslizamientos)",
+            "Impacto de aeronaves y vehículos",
+            "Granizo y vientos fuertes"
+          ],
+          "requisitos": [
+            "Cliente BancoEstado (Cuenta Corriente, Chequera Electrónica, Tarjeta de Crédito o CuentaRUT)",
+            "Propietario, cónyuge o hijo del propietario",
+            "Arrendatarios pueden asegurar solo el contenido",
+            "Vivienda de uso habitacional",
+            "Antigüedad máxima 60 años",
+            "NO requiere inspección de la propiedad"
+          ],
+          "planes": "Hasta 10 opciones de plan disponibles",
+          "exclusiones": ["Propiedades de adobe", "Vehículos", "Dinero en efectivo", "Contenido fuera de los deslindes del hogar"],
+          "tip_venta": "Chile es país sísmico. Todo hogar debería tener este seguro. NO requiere inspección = contratación rápida."
+        },
+        {
+          "id": "incendio-robo",
+          "nombre": "Seguro Incendio Hogar + Robo",
+          "descripcion": "Combina protección contra incendio con cobertura por robo y asalto al hogar.",
+          "coberturas": [
+            "Todo lo del seguro incendio hogar",
+            "Robo con fuerza de contenido del hogar",
+            "Asalto dentro del domicilio"
+          ],
+          "requisitos": [
+            "Propietario, cónyuge o hijo (arrendatarios solo contenido)",
+            "Viviendas en piso 1 o 2 deben tener cerraduras de seguridad"
+          ],
+          "tip_venta": "Para zonas con alta delincuencia. 'Proteja su casa del fuego Y de los ladrones con un solo seguro.'"
+        },
+        {
+          "id": "proteccion-hogar",
+          "nombre": "Seguro Protección Hogar",
+          "descripcion": "El seguro de hogar más completo y premium. Cubre estructura, contenido, pérdida de arriendo, reubicación temporal, retiro de escombros y gastos de bomberos.",
+          "coberturas": [
+            "Incendio de estructura y contenido",
+            "Pérdida de ingresos por arriendo",
+            "Gastos de reubicación temporal",
+            "Retiro de escombros",
+            "Gastos de bomberos"
+          ],
+          "tip_venta": "El plan premium. Para propietarios que arriendan o tienen propiedades de alto valor."
+        }
+      ]
+    },
+    {
+      "id": "robo-proteccion",
+      "nombre": "Robo y Protección Personal",
+      "aseguradora": "HDI Seguros",
+      "productos": [
+        {
+          "id": "sale-seguro-plus",
+          "nombre": "Sale Seguro Plus",
+          "descripcion": "Protección avanzada para tarjetas bancarias, retiros de efectivo y objetos personales contra robo y extorsión.",
+          "coberturas": [
+            "Uso forzado en cajero automático: 20 UF",
+            "Coacción en ventanilla de sucursal: 20 UF",
+            "Extorsión: 5 UF",
+            "Robo con violencia: 10 UF",
+            "Protección de compras nacionales: 100 UF",
+            "Protección de compras internacionales: 20 UF"
+          ],
+          "requisitos": [
+            "Mayor de 18 años",
+            "Tarjetahabiente activo de BancoEstado",
+            "Máximo 1 plan por cliente"
+          ],
+          "tip_venta": "Para clientes que usan cajeros frecuentemente o retiran efectivo. 'Si lo asaltan en el cajero, le devolvemos hasta 20 UF.'"
+        },
+        {
+          "id": "sale-seguro",
+          "nombre": "Seguro Tarjetas Bancarias (Sale Seguro)",
+          "descripcion": "Protección básica contra transacciones no autorizadas y asaltos en cajeros automáticos.",
+          "tip_venta": "Versión económica del Sale Seguro Plus. Para clientes que quieren protección básica de tarjeta."
+        }
+      ]
+    },
+    {
+      "id": "viajes",
+      "nombre": "Viajes",
+      "aseguradora": "MetLife",
+      "productos": [
+        {
+          "id": "viaje-protegido",
+          "nombre": "Seguro Viaje + Protegido",
+          "descripcion": "Asistencia médica, equipaje y retrasos para viajes nacionales e internacionales.",
+          "coberturas": [
+            "Emergencias médicas en el extranjero",
+            "Equipaje perdido o dañado",
+            "Cancelación de viaje",
+            "Retrasos de vuelo"
+          ],
+          "planes": ["Standard", "Full", "Premium"],
+          "requisitos": ["Edad: 18 a 68 años"],
+          "exclusiones": ["Condiciones preexistentes", "Deportes extremos"],
+          "tip_venta": "Temporada de vacaciones = oportunidad. 'Si se enferma en el extranjero, una noche de hospital puede costar millones. Este seguro lo cubre.'"
+        }
+      ]
+    }
+  ]
+}

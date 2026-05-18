@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Sales Command Center - Tu herramienta de ventas de seguros BancoEstado">
+<title>Sales Command Center</title>
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <!-- Splash -->
+  <div id="splash" class="splash active">
+    <div class="splash-content">
+      <div class="splash-icon">🎯</div>
+      <h1>SALES<span>CMD</span></h1>
+      <p>Command Center</p>
+      <div class="splash-loader"><div></div></div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="main" class="main">
+    <!-- Header -->
+    <header id="header">
+      <div class="header-left">
+        <div class="avatar" id="avatarBtn">M</div>
+        <div>
+          <div class="greeting" id="greeting">Buenos días</div>
+          <div class="user-name">Matías</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="streak-badge" id="streakBadge">🔥 0</div>
+      </div>
+    </header>
+
+    <!-- Pages Container -->
+    <div id="pages">
+      <!-- HOME PAGE -->
+      <section id="page-home" class="page active">
+        <!-- Stats Cards -->
+        <div class="stats-row">
+          <div class="stat-card accent1">
+            <div class="stat-value" id="statVentas">0</div>
+            <div class="stat-label">Ventas Hoy</div>
+          </div>
+          <div class="stat-card accent2">
+            <div class="stat-value" id="statMeta">0%</div>
+            <div class="stat-label">Meta Mensual</div>
+          </div>
+          <div class="stat-card accent3">
+            <div class="stat-value" id="statNivel">1</div>
+            <div class="stat-label">Nivel</div>
+          </div>
+        </div>
+
+        <!-- XP Progress -->
+        <div class="xp-section">
+          <div class="xp-header">
+            <span>Nivel <span id="xpLevel">1</span> — Novato</span>
+            <span id="xpText">0/100 XP</span>
+          </div>
+          <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+        </div>
+
+        <!-- Quick Actions -->
+        <h2 class="section-title">Acciones Rápidas</h2>
+        <div class="quick-actions">
+          <button class="action-btn" onclick="navigateTo('productos')">
+            <span class="action-icon">📋</span>
+            <span>Productos</span>
+          </button>
+          <button class="action-btn" onclick="navigateTo('quiz')">
+            <span class="action-icon">🧠</span>
+            <span>Quiz</span>
+          </button>
+          <button class="action-btn" onclick="navigateTo('simulador')">
+            <span class="action-icon">🎭</span>
+            <span>Simulador</span>
+          </button>
+          <button class="action-btn" onclick="navigateTo('registro')">
+            <span class="action-icon">✏️</span>
+            <span>Registrar</span>
+          </button>
+        </div>
+
+        <!-- Daily Tip -->
+        <div class="tip-card">
+          <div class="tip-header">💡 Tip del Día</div>
+          <div class="tip-text" id="dailyTip">Cargando...</div>
+        </div>
+
+        <!-- Recent Activity -->
+        <h2 class="section-title">Actividad Reciente</h2>
+        <div id="activityList" class="activity-list">
+          <div class="empty-state">Sin actividad aún. ¡Registra tu primera venta!</div>
+        </div>
+      </section>
+
+      <!-- PRODUCTOS PAGE -->
+      <section id="page-productos" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Catálogo de Seguros</h1>
+        </div>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Buscar seguro..." oninput="filterProducts()">
+        </div>
+        <div class="category-tabs" id="categoryTabs"></div>
+        <div id="productList" class="product-list"></div>
+      </section>
+
+      <!-- PRODUCT DETAIL PAGE -->
+      <section id="page-detalle" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('productos')">←</button>
+          <h1 id="detalleTitle">Detalle</h1>
+        </div>
+        <div id="detalleContent"></div>
+      </section>
+
+      <!-- QUIZ PAGE -->
+      <section id="page-quiz" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Quiz de Seguros</h1>
+        </div>
+        <div id="quizContainer"></div>
+      </section>
+
+      <!-- SIMULADOR PAGE -->
+      <section id="page-simulador" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Simulador de Ventas</h1>
+        </div>
+        <div id="simContainer"></div>
+      </section>
+
+      <!-- REGISTRO PAGE -->
+      <section id="page-registro" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Registrar Interacción</h1>
+        </div>
+        <div class="form-container">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select id="regTipo">
+              <option value="venta">✅ Venta Cerrada</option>
+              <option value="cotizacion">📝 Cotización</option>
+              <option value="contacto">📞 Contacto/Seguimiento</option>
+              <option value="rechazo">❌ Rechazo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Producto</label>
+            <select id="regProducto"></select>
+          </div>
+          <div class="form-group">
+            <label>Notas (opcional)</label>
+            <textarea id="regNotas" placeholder="Detalles de la interacción..."></textarea>
+          </div>
+          <button class="primary-btn" onclick="registrarInteraccion()">Registrar +25 XP</button>
+        </div>
+      </section>
+
+      <!-- LOGROS PAGE -->
+      <section id="page-logros" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Logros</h1>
+        </div>
+        <div id="logrosGrid" class="logros-grid"></div>
+      </section>
+
+      <!-- PERFIL PAGE -->
+      <section id="page-perfil" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Mi Perfil</h1>
+        </div>
+        <div id="perfilContent"></div>
+      </section>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav id="bottomNav">
+      <button class="nav-btn active" data-page="home">
+        <span class="nav-icon">🏠</span>
+        <span>Inicio</span>
+      </button>
+      <button class="nav-btn" data-page="productos">
+        <span class="nav-icon">📋</span>
+        <span>Productos</span>
+      </button>
+      <button class="nav-btn" data-page="quiz">
+        <span class="nav-icon">🧠</span>
+        <span>Quiz</span>
+      </button>
+      <button class="nav-btn" data-page="logros">
+        <span class="nav-icon">🏆</span>
+        <span>Logros</span>
+      </button>
+      <button class="nav-btn" data-page="perfil">
+        <span class="nav-icon">👤</span>
+        <span>Perfil</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
