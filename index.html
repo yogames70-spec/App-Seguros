@@ -13,13 +13,19 @@
 </head>
 <body>
 <div id="app">
-  <!-- Splash -->
+  <!-- Welcome Screen -->
   <div id="splash" class="splash active">
     <div class="splash-content">
-      <div class="splash-icon">🎯</div>
-      <h1>SALES<span>CMD</span></h1>
-      <p>Command Center</p>
-      <div class="splash-loader"><div></div></div>
+      <div class="splash-time" id="splashTime"></div>
+      <div class="splash-greeting">
+        <span class="gradient-text" id="splashGreeting">Buenos días</span>
+      </div>
+      <div class="splash-name" id="splashName">Bienvenido de vuelta, Sr. Matías</div>
+      <div class="splash-quote" id="splashQuote"></div>
+      <button class="splash-cta" onclick="enterApp()">
+        <span id="ctaText">¡A romperla!</span>
+        <span class="cta-arrow">→</span>
+      </button>
     </div>
   </div>
 

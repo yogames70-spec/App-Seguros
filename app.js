@@ -2,13 +2,37 @@
 let DB=null,state={xp:0,level:1,streak:0,ventas:0,lastDay:null,activities:[],quizDone:[],logros:[],metaMensual:0};
 const LEVELS=[{n:'Novato',xp:100},{n:'Aprendiz',xp:250},{n:'Vendedor',xp:500},{n:'Experto',xp:1000},{n:'Maestro',xp:2000},{n:'Leyenda',xp:5000}];
 const TIPS=["El SONAP cuesta solo 0.16 UF/mes. 1 de cada 3 personas desarrollará cáncer. Úsalo como argumento.","El seguro de Pérdida Total es perfecto para autos viejos: bajo costo, alta protección.","Chile es país sísmico. Todo hogar DEBERÍA tener seguro de incendio con cobertura sísmica.","El Seguro Muerte Accidental con Ahorro: 50% de la prima se devuelve como ahorro. No es gasto, es inversión.","Sale Seguro Plus cubre hasta 20 UF si te asaltan en el cajero. Perfecto para clientes que retiran efectivo.","SOAP es venta segura: todo auto lo necesita por ley para circular.","Seguro Viaje: una noche de hospital en el extranjero puede costar millones. Este seguro lo cubre.","Para Pymes: ofrecer salud complementaria mejora retención de talento. Mínimo 5 trabajadores.","RCI obligatorio para viajar en auto a Argentina. Temporada alta = ventas masivas.","El Full Ambulatorio reembolsa 70% de consultas SIN deducible. Complementa FONASA/Isapre."];
+const QUOTES=["El éxito no se trata de suerte, se trata de preparación.","Cada 'no' te acerca más al próximo 'sí'.","No vendas un seguro, vende tranquilidad.","La diferencia entre un buen vendedor y un excelente vendedor es la constancia.","Tu actitud determina tu altitud.","Hoy es un gran día para cerrar esa venta.","El mejor momento para vender fue ayer. El segundo mejor es ahora.","Los campeones no se hacen en los gimnasios, se hacen con algo que tienen muy adentro: un deseo, un sueño.","Sé tan bueno que no puedan ignorarte.","El cliente no compra productos, compra soluciones a sus problemas.","Cada cliente es una oportunidad de cambiar una vida.","La confianza se construye con conocimiento. Estudia tus productos.","No hay atajos hacia la excelencia.","Vender es servir. Sirve bien y venderás mejor.","Hoy alguien necesita exactamente lo que tú ofreces."];
+const CTAS=["¡A romperla! 🔥","¡Vamos con todo! 💪","¡A cerrar ventas! 🎯","¡Hoy es el día! ⚡","¡A conquistar! 🚀","¡Dale con todo! 🏆"];
 
 // Init
-window.addEventListener('DOMContentLoaded',async()=>{loadState();await loadDB();setTimeout(()=>{document.getElementById('splash').classList.remove('active');document.getElementById('main').classList.add('active');renderHome();},1800);setupNav();checkStreak();});
+window.addEventListener('DOMContentLoaded',async()=>{loadState();await loadDB();initWelcomeScreen();setupNav();checkStreak();populateProductSelect();});
 
 async function loadDB(){try{const r=await fetch('data/seguros.json');DB=await r.json();}catch(e){DB={categorias:[]};console.error(e);}}
 function loadState(){const s=localStorage.getItem('salesCmdState');if(s)state=JSON.parse(s);}
 function saveState(){localStorage.setItem('salesCmdState',JSON.stringify(state));}
+
+// Welcome Screen
+function initWelcomeScreen(){
+  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Santiago'}));
+  const h=now.getHours();
+  const timeStr=now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit',timeZone:'America/Santiago'});
+  const dateStr=now.toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Santiago'});
+  let greet='Buenas noches';
+  if(h>=5&&h<12)greet='Buenos días';
+  else if(h>=12&&h<20)greet='Buenas tardes';
+  document.getElementById('splashTime').textContent=dateStr.charAt(0).toUpperCase()+dateStr.slice(1)+' • '+timeStr;
+  document.getElementById('splashGreeting').textContent=greet;
+  document.getElementById('splashQuote').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  document.getElementById('ctaText').textContent=CTAS[Math.floor(Math.random()*CTAS.length)];
+}
+function enterApp(){
+  const splash=document.getElementById('splash');
+  splash.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  splash.style.opacity='0';
+  splash.style.transform='scale(1.05)';
+  setTimeout(()=>{splash.classList.remove('active');splash.style='';document.getElementById('main').classList.add('active');renderHome();},500);
+}
 
 // Navigation
 function navigateTo(p){document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.dataset.page===p);});const renders={home:renderHome,productos:renderProductos,quiz:renderQuiz,simulador:renderSimulador,logros:renderLogros,perfil:renderPerfil};if(renders[p])renders[p]();document.getElementById('pages').scrollTop=0;}
