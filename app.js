@@ -38,7 +38,7 @@ function enterApp(){
 function navigateTo(p){document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.dataset.page===p);});const renders={home:renderHome,productos:renderProductos,quiz:renderQuiz,simulador:renderSimulador,logros:renderLogros,perfil:renderPerfil,ventas:renderVentas};if(renders[p])renders[p]();document.getElementById('pages').scrollTop=0;}
 
 // Ventas Module
-const VENTAS_FRASES=["Vender no es empujar un producto. Es escuchar con atención, entender qué necesita la persona que tienes al frente, y ofrecerle algo que realmente le sirva. Si lo haces bien, no necesitas convencer a nadie.","El secreto de los mejores vendedores no es hablar bonito. Es hacer las preguntas correctas en el momento correcto. Cuando el cliente descubre solo que necesita algo, la venta se cierra sola.","Nadie llega a tu escritorio pidiendo un seguro. Llegan a pagar una cuenta, a pedir un crédito, a hacer un depósito. Tu superpoder es detectar la oportunidad y transformar una atención rutinaria en una venta."];
+const VENTAS_FRASES=["Vender no es convencer, es ayudar al cliente a tomar la mejor decisión para su vida.","El mejor vendedor no es el que más habla, sino el que mejor escucha.","No vendas productos, vende la solución a un problema que el cliente ni sabía que tenía.","Tu superpoder es transformar una atención rutinaria en una oportunidad.","Las ventas se cierran con confianza, no con presión."];
 const ESTRATEGIAS=[
 {nombre:"Los Dos SÍ Antes del Tercero",desc:"Esta es una de las técnicas más poderosas en ventas y está basada en psicología. La idea es simple: antes de hacer tu pregunta de cierre (la que importa), haz dos preguntas cuya respuesta sea obviamente SÍ. ¿Por qué funciona? Porque el cerebro humano entra en un patrón de aceptación. Cuando ya dijiste 'sí' dos veces, es mucho más difícil decir 'no' a la tercera.",ejemplo:"Tú: '¿Usted tiene hijos, cierto?'\nCliente: 'Sí, tengo dos.'\nTú: '¿Y le gustaría que ellos estén protegidos económicamente si a usted le llegara a pasar algo?'\nCliente: 'Sí, obvio.'\nTú: 'Perfecto. Justamente para eso tenemos el SONAP, que por menos de $6.000 al mes protege a su familia. ¿Se lo dejo activado?'",tips:["Las dos primeras preguntas deben ser obvias y emocionales, no técnicas","No hagas las 3 preguntas seguidas como robot. Conversa entre cada una","Si el cliente dice 'no' a la primera, cambia de tema y vuelve después"],categoria:"Cierre"},
 {nombre:"El Espejo",desc:"Esta técnica viene de la negociación del FBI (libro: Never Split the Difference). Consiste en repetir las últimas 3-4 palabras que dijo el cliente, pero en forma de pregunta. Esto hace que el cliente sienta que lo estás escuchando de verdad, baja sus defensas y lo motiva a seguir hablando. Cuanto más habla el cliente, más información te da para cerrar la venta.",ejemplo:"Cliente: 'Es que la verdad ando corto de plata y me da miedo endeudarme más'\nTú: '¿Le da miedo endeudarme más?'\nCliente: 'Sí, es que tuve un mal año y...'\n(El cliente sigue hablando y te cuenta su situación real. Ahí detectas la oportunidad.)\nTú: 'Entiendo perfectamente. Y justamente por eso le conviene el SONAP: es tan barato que no va a sentirlo, pero si le pasa algo, le cambia la vida.'",tips:["No repitas como loro. Hazlo con tono de genuina curiosidad","Funciona especialmente bien cuando el cliente se resiste","Después de repetir, CÁLLATE. Deja que el silencio trabaje"],categoria:"Rapport"},
@@ -137,68 +137,98 @@ function showQuizQuestion(){const c=document.getElementById('quizContainer');if(
 const q=quizState.questions[quizState.idx];quizState.answered=false;c.innerHTML=`<div class="quiz-card"><div class="quiz-progress">Pregunta ${quizState.idx+1} de ${quizState.questions.length}</div><div class="quiz-question">${q.q}</div><div class="quiz-options">${q.o.map((o,i)=>`<div class="quiz-option" onclick="answerQuiz(${i})">${o}</div>`).join('')}</div></div>`;}
 function answerQuiz(i){if(quizState.answered)return;quizState.answered=true;const q=quizState.questions[quizState.idx];const opts=document.querySelectorAll('.quiz-option');opts[q.a].classList.add('correct');if(i===q.a){quizState.score++;}else{opts[i].classList.add('wrong');}setTimeout(()=>{quizState.idx++;showQuizQuestion();},1200);}
 
-// Simulator
+// Simulator - Realistic Banking Scenarios
 const SCENARIOS=[
-{id:1,title:"Cliente joven sin seguros",desc:"Persona de 25 años, primera cuenta. No tiene ningún seguro.",diff:"facil",msgs:[
-{from:"client",text:"Hola, vengo a abrir una cuenta. No tengo ningún seguro, nunca he necesitado uno."},
-{from:"options",choices:[
-{text:"Le recomiendo el SONAP, cuesta solo 0.16 UF al mes y lo protege contra cáncer.",next:1,score:3},
-{text:"Debería contratar todos nuestros seguros, son muy buenos.",next:2,score:0},
-{text:"¿Sabía que 1 de cada 3 personas desarrolla cáncer? El SONAP le da tranquilidad por menos de $6.000 al mes.",next:3,score:5}
+{id:1,title:"Cliente viene a depositar",desc:"Señora de 45 años, viene a hacer un depósito a plazo. Oportunidad: SONAP.",diff:"facil",steps:[
+{type:"context",text:"Una señora de unos 45 años se acerca a tu escritorio. Trae un cheque para depositar a plazo fijo. Se ve tranquila, no tiene apuro."},
+{type:"client",text:"Hola, vengo a hacer un depósito a plazo. Tengo este cheque de mi finiquito."},
+{type:"choice",question:"Acabas de resolver su trámite. ¿Cómo introduces el tema del seguro?",options:[
+{text:"Señora, antes de que se vaya... veo que usted tiene su CuentaRUT activa. ¿Puedo preguntarle algo rápido?",score:5,feedback:"Excelente. Pedir permiso para preguntar es respetuoso y abre la puerta sin presionar."},
+{text:"Señora, ¿le interesa un seguro oncológico?",score:1,feedback:"Demasiado directo. No creaste contexto ni conexión. El cliente se pone a la defensiva."},
+{text:"Listo su depósito. Que le vaya bien.",score:0,feedback:"Perdiste la oportunidad. Tenías un cliente receptivo y no lo aprovechaste."}
 ]},
-{from:"client",text:"¿Tan barato? No sabía. ¿Y qué cubre exactamente?"},
-{from:"options",choices:[
-{text:"Cubre diagnóstico de cáncer hasta 600 UF, muerte accidental hasta 1.200 UF, e incluye exámenes preventivos gratis.",next:4,score:5},
-{text:"Cubre cáncer y muerte. Es muy completo.",next:5,score:2}
+{type:"client",text:"Sí, dígame, pero rápido porque tengo que ir a buscar a mis nietos al colegio."},
+{type:"choice",question:"Tiene apuro pero te dio permiso. ¿Qué haces?",options:[
+{text:"Es rapidísimo. ¿Usted tiene familia que dependa de usted, cierto?",score:5,feedback:"Perfecto. Usaste 'Los Dos SÍ': pregunta obvia que conecta emocionalmente."},
+{text:"Le cuento que tenemos un seguro oncológico que cubre hasta 600 UF y cuesta 0.16 UF mensuales con cobertura por muerte accidental de...",score:1,feedback:"La estás abrumando con datos técnicos. Tiene apuro. Ve al grano emocional, no técnico."},
+{text:"Bueno si tiene apuro la dejo ir y otro día conversamos.",score:0,feedback:"Error. Ya te dijo que sí. 'Otro día' significa nunca. Aprovecha el momento."}
 ]},
-{from:"client",text:"Me interesa. ¿Cómo lo contrato?"},
-{from:"end",score:"excellent",text:"¡Excelente! Venta cerrada. Has demostrado conocimiento del producto y empatía con el cliente."}
+{type:"client",text:"Sí, mis nietos. Los cuido yo porque mi hija trabaja todo el día."},
+{type:"choice",question:"Te contó algo personal. ¿Cómo usas esa información?",options:[
+{text:"¿Y qué pasaría con sus nietos si a usted le llegara a pasar algo de salud? ¿Quién los cuidaría?",score:5,feedback:"Pregunta de Implicación (SPIN). La haces reflexionar sobre las consecuencias. Poderoso."},
+{text:"Tenemos un seguro que cuesta solo $6.000 al mes. ¿Lo quiere?",score:2,feedback:"Saltaste al cierre sin crear la necesidad. Funciona a veces pero pierdes muchas ventas así."},
+{text:"Qué lindo que los cuide usted. Bueno, le cuento del SONAP...",score:3,feedback:"Bien el comentario personal, pero la transición fue brusca. Conecta mejor."}
 ]},
-{id:2,title:"Propietario preocupado por terremotos",desc:"Dueño de casa, zona sísmica. Consulta por protección de vivienda.",diff:"medio",msgs:[
-{from:"client",text:"Tengo una casa y con los temblores me preocupa. ¿Tienen algo que me proteja?"},
-{from:"options",choices:[
-{text:"Sí, nuestro Seguro Incendio Hogar cubre estructura hasta 3.000 UF e incluye cobertura sísmica opcional.",next:1,score:5},
-{text:"Tenemos seguros de hogar. ¿Le interesa?",next:2,score:1},
-{text:"Chile es país sísmico. Le recomiendo Protección Hogar que además cubre reubicación temporal si su casa queda inhabitable.",next:3,score:5}
+{type:"client",text:"Mmm... no había pensado en eso. Pero es que no tengo plata para gastar en seguros..."},
+{type:"choice",question:"La objeción clásica: 'no tengo plata'. ¿Cómo respondes?",options:[
+{text:"Entiéndame, no es un gasto. Son $6.000 al mes, menos que un café. Y si le diagnostican algo, le pagan hasta 600 UF. La pregunta no es si puede pagarlo... es si puede darse el lujo de no tenerlo.",score:5,feedback:"Brillante. Anclaje de precio + urgencia real. Reenmarcaste el costo como inversión."},
+{text:"Bueno, si no puede no puede. Cuando tenga más plata me busca.",score:0,feedback:"Nunca aceptes la primera objeción. El 80% de los 'no tengo plata' se convierten en SÍ con la técnica correcta."},
+{text:"Es súper barato, no se preocupe.",score:2,feedback:"Decir 'es barato' sin dar contexto no convence. Necesitas comparar con algo tangible."}
 ]},
-{from:"client",text:"¿Y si mi casa se daña y no puedo vivir ahí?"},
-{from:"options",choices:[
-{text:"Protección Hogar cubre gastos de reubicación temporal, retiro de escombros, e incluso pérdida de arriendo si la tenía arrendada.",next:4,score:5},
-{text:"Tendría que buscar donde quedarse mientras tanto.",next:5,score:0}
+{type:"end",text:"La señora contrató el SONAP. Le diste tranquilidad para ella y sus nietos. Eso es vender con propósito."}
 ]},
-{from:"client",text:"Suena bien. ¿Necesito inspección?"},
-{from:"options",choices:[
-{text:"¡No! Una de las ventajas es que NO requiere inspección. Si su casa tiene menos de 60 años, podemos activarlo ahora mismo.",next:6,score:5},
-{text:"Déjeme verificar...",next:7,score:1}
+{id:2,title:"Joven abre CuentaRUT",desc:"Chico de 22 años, primer trabajo. Viene a activar su CuentaRUT. Oportunidad: Sale Seguro.",diff:"facil",steps:[
+{type:"context",text:"Un joven de unos 22 años llega a tu escritorio. Se nota que es su primer trabajo formal. Viene a activar su CuentaRUT para recibir su sueldo."},
+{type:"client",text:"Hola, necesito activar mi CuentaRUT. Es que empecé a trabajar y me piden una cuenta para depositarme el sueldo."},
+{type:"choice",question:"Estás activando su cuenta. ¿Cómo introduces una oportunidad de venta?",options:[
+{text:"Felicitaciones por el nuevo trabajo. Oye, una pregunta: ¿vas a usar cajero automático para sacar plata, cierto?",score:5,feedback:"Perfecto. Lo felicitas (rapport), y haces una pregunta obvia cuya respuesta es SÍ."},
+{text:"Listo, tu cuenta está activa. ¿Algo más?",score:0,feedback:"Oportunidad perdida. Un cliente nuevo es el momento ideal para ofrecer productos."},
+{text:"Te recomiendo que contrates el Sale Seguro Plus para proteger tu tarjeta.",score:2,feedback:"Muy directo. No creaste contexto ni necesidad. Primero pregunta, después ofrece."}
 ]},
-{from:"end",score:"excellent",text:"¡Gran venta! Conoces los detalles que importan al cliente."}
+{type:"client",text:"Sí, obvio. Voy a sacar plata del cajero todos los meses."},
+{type:"choice",question:"Ya dijo SÍ una vez. ¿Cómo sigues?",options:[
+{text:"¿Y sabías que en Chile los asaltos en cajeros son súper comunes? Si alguien te obliga a sacar plata del cajero, ¿quién te devuelve esa plata?",score:5,feedback:"Pregunta de Implicación con dato real. Lo haces reflexionar sin presionarlo."},
+{text:"Tenemos un seguro que te protege por 20 UF si te asaltan.",score:3,feedback:"Dato correcto pero fuiste al producto muy rápido. Deja que sienta la necesidad primero."},
+{text:"Ten cuidado cuando saques plata, es peligroso.",score:1,feedback:"Lo asustaste sin ofrecerle solución. Siempre que plantees un problema, ten la solución lista."}
 ]},
-{id:3,title:"Conductor con auto antiguo",desc:"Cliente con auto de 18 años. Busca seguro económico.",diff:"medio",msgs:[
-{from:"client",text:"Mi auto tiene 18 años, ¿puedo asegurarlo? En todos lados me rechazan."},
-{from:"options",choices:[
-{text:"Tenemos el Seguro de Pérdida Total que acepta autos de hasta 20 años. Es económico y cubre robo total y destrucción completa.",next:1,score:5},
-{text:"Con 18 años va a ser difícil asegurarlo en cualquier parte.",next:2,score:0},
-{text:"Podemos ver opciones. ¿Qué tipo de uso le da al auto?",next:3,score:3}
+{type:"client",text:"Pucha, no... nadie supongo. ¿Y qué se puede hacer?"},
+{type:"choice",question:"El cliente preguntó por la solución. ¡Momento perfecto para cerrar!",options:[
+{text:"Para eso existe Sale Seguro Plus. Si te obligan en el cajero, te devolvemos hasta 20 UF. Y además protege tus compras hasta 100 UF. ¿Te lo dejo activado con cargo a tu cuenta?",score:5,feedback:"Cierre perfecto. Diste la solución + usaste La Alternativa implícita (no preguntaste si quiere, preguntaste cómo)."},
+{text:"Tenemos Sale Seguro Plus. ¿Lo quieres o no?",score:2,feedback:"Preguntaste SÍ o NO. Regla de oro: nunca des la opción de decir 'no'. Usa alternativas."},
+{text:"Sale Seguro Plus cubre uso forzado en cajero 20 UF, coacción en ventanilla 20 UF, extorsión 5 UF, robo con violencia 10 UF...",score:1,feedback:"Lo abrumaste con datos. A un joven de 22 años le dices 2 beneficios clave y cierras. Menos es más."}
 ]},
-{from:"client",text:"¿Y qué tan caro es?"},
-{from:"options",choices:[
-{text:"Es la opción más económica porque solo cubre pérdida total, no daños menores. Perfecto para autos con más años donde una reparación grande no vale la pena.",next:4,score:5},
-{text:"Depende del auto, tendría que cotizar.",next:5,score:2}
+{type:"end",text:"El joven activó Sale Seguro Plus. Su primer producto bancario más allá de la CuentaRUT. Bien hecho."}
 ]},
-{from:"end",score:"good",text:"Bien manejado. Ofreciste la solución correcta para su situación."}
+{id:3,title:"Señor paga dividendo",desc:"Hombre de 55 años paga su dividendo hipotecario mensual. Oportunidad: Seguro Hogar.",diff:"medio",steps:[
+{type:"context",text:"Un señor de unos 55 años llega a pagar su dividendo. Lo ves todos los meses, siempre paga puntual. Hoy tienes la meta de ofrecer seguro de hogar."},
+{type:"client",text:"Buenos días, vengo a pagar mi dividendo como siempre."},
+{type:"choice",question:"Es un cliente recurrente. ¿Cómo abres la conversación?",options:[
+{text:"Buenos días don [nombre]. Siempre tan puntual. Oiga, aprovechando que está acá, ¿le puedo hacer una consulta rápida sobre su casa?",score:5,feedback:"Excelente. Usaste su nombre, lo reconociste como cliente fiel, y pediste permiso. Triple combo."},
+{text:"Buenos días. ¿Le interesa un seguro para su casa?",score:1,feedback:"Sin contexto, sin rapport, sin conexión. Es como pedirle matrimonio en la primera cita."},
+{text:"Listo su pago. ¿Necesita algo más?",score:0,feedback:"Oportunidad perdida. Cada visita es una chance de venta."}
+]},
+{type:"client",text:"Sí, dígame. ¿Qué pasa con mi casa?"},
+{type:"choice",question:"Te dio la apertura. ¿Qué pregunta haces?",options:[
+{text:"¿Su casa tiene seguro contra incendio y terremoto? Porque veo que lleva años pagando su dividendo y sería terrible perder esa inversión por un siniestro.",score:5,feedback:"SPIN perfecto: Situación + Implicación en una sola pregunta. Lo haces pensar en el riesgo."},
+{text:"Nuestro seguro de hogar cubre hasta 3.000 UF por incendio y sismo. ¿Lo quiere?",score:2,feedback:"Dato correcto pero sin conexión emocional. Primero necesita SENTIR la necesidad."},
+{text:"Chile es un país sísmico. ¿Sabía que el 27F destruyó miles de casas?",score:3,feedback:"Buen dato pero suena a clase de historia. Hazlo personal: SU casa, SU inversión."}
+]},
+{type:"client",text:"La verdad no tiene seguro aparte del que viene con el crédito. Pero ese solo cubre lo que debo, no el valor real de la casa."},
+{type:"choice",question:"El cliente reveló un problema real. ¿Cómo aprovechas?",options:[
+{text:"Exacto. El seguro del crédito protege al BANCO, no a USTED. Si hay un terremoto, el banco recupera su deuda, pero usted pierde su casa y todo lo que tiene adentro. Nuestro seguro de hogar lo protege a USTED: hasta 3.000 UF por estructura y 450 UF por contenido. Y lo mejor: no requiere inspección.",score:5,feedback:"Magistral. Diferenciaste entre el seguro del banco y el del cliente. Eso es conocimiento que genera confianza."},
+{text:"Le recomiendo contratar uno adicional para estar más protegido.",score:2,feedback:"Genérico. No le dijiste POR QUÉ es diferente ni qué gana él."},
+{text:"Sí, muchos clientes tienen ese problema. ¿Quiere que le cotice?",score:3,feedback:"Está bien pero perdiste la oportunidad de demostrar conocimiento y generar urgencia."}
+]},
+{type:"end",text:"Don [nombre] contrató el Seguro Protección Hogar. Ahora su casa y su contenido están protegidos de verdad, no solo la deuda del banco."}
 ]}
 ];
-let simState={scenario:null,msgIdx:0,totalScore:0};
+let simState={scenario:null,stepIdx:0,totalScore:0,maxScore:0};
 
-function renderSimulador(){const c=document.getElementById('simContainer');c.innerHTML='<h2 class="section-title">Elige un escenario</h2>'+SCENARIOS.map(s=>`<div class="sim-scenario-card" onclick="startSim(${s.id})"><div class="sim-scenario-title">${s.title}</div><div class="sim-scenario-desc">${s.desc}</div><div class="sim-scenario-diff diff-${s.diff}">Dificultad: ${s.diff.charAt(0).toUpperCase()+s.diff.slice(1)}</div></div>`).join('');}
+function renderSimulador(){const c=document.getElementById('simContainer');c.innerHTML='<h2 class="section-title">Elige un escenario</h2><p style="color:var(--text2);font-size:13px;margin-bottom:16px;line-height:1.6">Escenarios reales de BancoEstado. El cliente NO viene a comprar un seguro: viene por otro trámite. Tu misión es detectar la oportunidad y cerrar la venta.</p>'+SCENARIOS.map(s=>`<div class="sim-scenario-card" onclick="startSim(${s.id})"><div class="sim-scenario-title">${s.title}</div><div class="sim-scenario-desc">${s.desc}</div><div class="sim-scenario-diff diff-${s.diff}">Dificultad: ${s.diff.charAt(0).toUpperCase()+s.diff.slice(1)}</div></div>`).join('');}
 
-function startSim(id){simState={scenario:SCENARIOS.find(s=>s.id===id),msgIdx:0,totalScore:0};renderSimStep();}
-function renderSimStep(){const c=document.getElementById('simContainer');const s=simState.scenario;if(simState.msgIdx>=s.msgs.length)return;const m=s.msgs[simState.msgIdx];if(m.from==='end'){const xp=simState.totalScore*5;addXP(xp);c.innerHTML=`<div class="sim-chat">${buildChatHTML()}</div><div class="quiz-result"><div class="quiz-score">${simState.totalScore} pts</div><div class="quiz-msg">${m.text}</div><p style="color:var(--text2);margin-bottom:24px">+${xp} XP ganados</p><button class="primary-btn" onclick="renderSimulador()">Otro Escenario</button></div>`;return;}
-c.innerHTML=`<div class="sim-chat">${buildChatHTML()}</div>${m.from==='options'?`<div class="sim-options">${m.choices.map((ch,i)=>`<div class="sim-option" onclick="simChoose(${i})">${ch.text}</div>`).join('')}</div>`:''}`;}
+function startSim(id){simState={scenario:JSON.parse(JSON.stringify(SCENARIOS.find(s=>s.id===id))),stepIdx:0,totalScore:0,maxScore:0,chat:[]};renderSimStep();}
 
-function buildChatHTML(){const s=simState.scenario;let h='';for(let i=0;i<=simState.msgIdx&&i<s.msgs.length;i++){const m=s.msgs[i];if(m.from==='client')h+=`<div class="sim-msg client"><div class="sender">👤 Cliente</div>${m.text}</div>`;if(m.userReply)h+=`<div class="sim-msg user"><div class="sender">Tú</div>${m.userReply}</div>`;}return h;}
+function renderSimStep(){const c=document.getElementById('simContainer');const s=simState.scenario;if(simState.stepIdx>=s.steps.length)return;const step=s.steps[simState.stepIdx];
+if(step.type==='context'){simState.chat.push({type:'context',text:step.text});simState.stepIdx++;renderSimStep();return;}
+if(step.type==='client'){simState.chat.push({type:'client',text:step.text});simState.stepIdx++;renderSimStep();return;}
+if(step.type==='end'){const pct=simState.maxScore>0?Math.round((simState.totalScore/simState.maxScore)*100):0;const xp=Math.round(pct/5);addXP(xp);
+c.innerHTML=`<div class="sim-chat">${buildChat()}</div><div class="quiz-result"><div class="quiz-score">${pct}%</div><div class="quiz-msg">${step.text}</div><p style="color:var(--text2);margin-bottom:24px">+${xp} XP ganados</p><button class="primary-btn" onclick="renderSimulador()">Otro Escenario</button></div>`;return;}
+if(step.type==='choice'){simState.maxScore+=5;
+c.innerHTML=`<div class="sim-chat">${buildChat()}</div><div class="sim-question">${step.question}</div><div class="sim-options">${step.options.map((o,i)=>`<div class="sim-option" onclick="simAnswer(${i})">${o.text}</div>`).join('')}</div>`;}}
 
-function simChoose(i){const m=simState.scenario.msgs[simState.msgIdx];const ch=m.choices[i];simState.totalScore+=ch.score;simState.scenario.msgs[simState.msgIdx].userReply=ch.text;simState.msgIdx++;renderSimStep();}
+function buildChat(){return simState.chat.map(m=>{if(m.type==='context')return`<div class="sim-msg context"><div class="sender">📋 Contexto</div>${m.text}</div>`;if(m.type==='client')return`<div class="sim-msg client"><div class="sender">👤 Cliente</div>${m.text}</div>`;if(m.type==='user')return`<div class="sim-msg user"><div class="sender">Tú</div>${m.text}</div>`;if(m.type==='feedback')return`<div class="sim-msg feedback"><div class="sender">${m.score>=4?'✅':'⚠️'} Feedback</div>${m.text}</div>`;return'';}).join('');}
+
+function simAnswer(i){const step=simState.scenario.steps[simState.stepIdx];const opt=step.options[i];simState.totalScore+=opt.score;simState.chat.push({type:'user',text:opt.text});simState.chat.push({type:'feedback',text:opt.feedback,score:opt.score});simState.stepIdx++;renderSimStep();}
 
 // Register
 function registrarInteraccion(){const tipo=document.getElementById('regTipo').value;const prod=document.getElementById('regProducto').value;const notas=document.getElementById('regNotas').value;const icons={venta:'✅',cotizacion:'📝',contacto:'📞',rechazo:'❌'};const xpMap={venta:50,cotizacion:25,contacto:15,rechazo:10};const xp=xpMap[tipo]||10;if(tipo==='venta')state.ventas++;state.activities.push({icon:icons[tipo],title:`${tipo.charAt(0).toUpperCase()+tipo.slice(1)}: ${prod}`,time:new Date().toLocaleString('es-CL'),xp:xp,notas:notas});checkAchievements();saveState();addXP(xp);document.getElementById('regNotas').value='';navigateTo('home');}
