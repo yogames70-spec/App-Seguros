@@ -28,7 +28,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:
 .splash-greeting .gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 6s ease infinite}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .splash-name{font-size:18px;font-weight:600;color:var(--text2);margin-bottom:36px}
-.splash-quote{font-size:20px;color:var(--text);line-height:1.6;max-width:320px;margin:0 auto 48px;font-style:italic;font-weight:500}
+.splash-quote{font-size:22px;color:var(--text);line-height:1.5;max-width:320px;margin:0 auto 48px;font-style:italic;font-weight:600;font-family:'Cormorant Garamond',serif}
 .splash-quote::before{content:'"';font-size:48px;color:var(--accent2);opacity:.3;display:block;margin-bottom:-16px;font-style:normal}
 .splash-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,var(--accent2),#5535cc);color:#fff;border:none;border-radius:60px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(124,92,252,0.35);transition:all .3s;letter-spacing:2px;text-transform:uppercase}
 .splash-cta:active{transform:scale(.96);box-shadow:0 4px 20px rgba(124,92,252,0.25)}
@@ -205,3 +205,24 @@ header{padding:16px 20px;display:flex;align-items:center;justify-content:space-b
 /* CONFETTI */
 .confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:2px;z-index:300;animation:confettiFall 3s ease forwards}
 @keyframes confettiFall{to{top:110vh;transform:rotate(720deg) translateX(100px);opacity:0}}
+
+/* VENTAS MODULE */
+.ventas-hero{background:linear-gradient(135deg,rgba(124,92,252,.06),rgba(0,200,150,.04));border:1px solid rgba(124,92,252,.1);border-radius:var(--radius);padding:24px 20px;margin-bottom:16px;text-align:center}
+.ventas-frase{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;font-weight:600;color:var(--text);line-height:1.5}
+.ventas-sections{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+
+/* ESTRATEGIAS */
+.estrategia-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow);transition:all .2s}
+.estrategia-card:active{transform:scale(.98)}
+.estrategia-header{display:flex;align-items:center;gap:12px;padding:16px}
+.estrategia-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent1));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.estrategia-nombre{font-size:14px;font-weight:700}
+.estrategia-cat{font-size:11px;color:var(--accent2);font-weight:600;margin-top:2px}
+.estrategia-arrow{margin-left:auto;color:var(--text3);font-size:12px;transition:transform .3s;flex-shrink:0}
+.estrategia-card.open .estrategia-arrow{transform:rotate(180deg)}
+.estrategia-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 16px}
+.estrategia-card.open .estrategia-body{max-height:500px;padding:0 16px 16px}
+.estrategia-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px}
+.estrategia-ejemplo{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--accent1)}
+.estrategia-ejemplo-title{font-size:11px;font-weight:700;color:var(--accent1);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.estrategia-ejemplo-text{font-size:13px;line-height:1.7;color:var(--text);white-space:pre-wrap;font-family:'Inter',sans-serif;margin:0}

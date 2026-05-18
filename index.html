@@ -8,7 +8,7 @@
 <meta name="description" content="Sales Command Center - Tu herramienta de ventas de seguros BancoEstado">
 <title>Sales Command Center</title>
 <link rel="manifest" href="manifest.json">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -75,19 +75,19 @@
         </div>
 
         <!-- Quick Actions -->
-        <h2 class="section-title">Acciones Rápidas</h2>
+        <h2 class="section-title">Módulos</h2>
         <div class="quick-actions">
+          <button class="action-btn" onclick="navigateTo('ventas')">
+            <span class="action-icon">💰</span>
+            <span>Ventas</span>
+          </button>
           <button class="action-btn" onclick="navigateTo('productos')">
-            <span class="action-icon">📋</span>
-            <span>Productos</span>
+            <span class="action-icon">🛡️</span>
+            <span>Seguros</span>
           </button>
           <button class="action-btn" onclick="navigateTo('quiz')">
             <span class="action-icon">🧠</span>
             <span>Quiz</span>
-          </button>
-          <button class="action-btn" onclick="navigateTo('simulador')">
-            <span class="action-icon">🎭</span>
-            <span>Simulador</span>
           </button>
           <button class="action-btn" onclick="navigateTo('registro')">
             <span class="action-icon">✏️</span>
@@ -142,10 +142,19 @@
       <!-- SIMULADOR PAGE -->
       <section id="page-simulador" class="page">
         <div class="page-header">
-          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <button class="back-btn" onclick="navigateTo('ventas')">←</button>
           <h1>Simulador de Ventas</h1>
         </div>
         <div id="simContainer"></div>
+      </section>
+
+      <!-- VENTAS PAGE -->
+      <section id="page-ventas" class="page">
+        <div class="page-header">
+          <button class="back-btn" onclick="navigateTo('home')">←</button>
+          <h1>Ventas</h1>
+        </div>
+        <div id="ventasContent"></div>
       </section>
 
       <!-- REGISTRO PAGE -->
@@ -201,13 +210,13 @@
         <span class="nav-icon">🏠</span>
         <span>Inicio</span>
       </button>
-      <button class="nav-btn" data-page="productos">
-        <span class="nav-icon">📋</span>
-        <span>Productos</span>
+      <button class="nav-btn" data-page="ventas">
+        <span class="nav-icon">💰</span>
+        <span>Ventas</span>
       </button>
-      <button class="nav-btn" data-page="quiz">
-        <span class="nav-icon">🧠</span>
-        <span>Quiz</span>
+      <button class="nav-btn" data-page="productos">
+        <span class="nav-icon">🛡️</span>
+        <span>Seguros</span>
       </button>
       <button class="nav-btn" data-page="logros">
         <span class="nav-icon">🏆</span>

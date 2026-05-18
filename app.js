@@ -35,7 +35,50 @@ function enterApp(){
 }
 
 // Navigation
-function navigateTo(p){document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.dataset.page===p);});const renders={home:renderHome,productos:renderProductos,quiz:renderQuiz,simulador:renderSimulador,logros:renderLogros,perfil:renderPerfil};if(renders[p])renders[p]();document.getElementById('pages').scrollTop=0;}
+function navigateTo(p){document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.dataset.page===p);});const renders={home:renderHome,productos:renderProductos,quiz:renderQuiz,simulador:renderSimulador,logros:renderLogros,perfil:renderPerfil,ventas:renderVentas};if(renders[p])renders[p]();document.getElementById('pages').scrollTop=0;}
+
+// Ventas Module
+const VENTAS_FRASES=["Vender no es convencer, es ayudar al cliente a tomar la mejor decisión para su vida.","El mejor vendedor no es el que más habla, sino el que mejor escucha.","No vendas productos, vende la solución a un problema que el cliente ni sabía que tenía."];
+const ESTRATEGIAS=[
+{nombre:"Los Dos SÍ Antes del Tercero",desc:"Haz dos preguntas cuya respuesta sea SÍ antes de hacer la pregunta de cierre. El cerebro entra en un patrón de aceptación.",ejemplo:"— ¿Usted tiene familia, cierto? (SÍ)\n— ¿Le gustaría que estén protegidos si algo le pasa? (SÍ)\n— Entonces el SONAP es perfecto para usted, ¿lo activamos ahora?",categoria:"Cierre"},
+{nombre:"El Espejo",desc:"Repite las últimas 3-4 palabras que dijo el cliente en forma de pregunta. Esto genera confianza y lo hace sentir escuchado.",ejemplo:"Cliente: 'Es que me preocupa quedarme sin plata si me enfermo'\nTú: '¿Quedarse sin plata si se enferma? Justamente para eso existe nuestro Full Ambulatorio...'",categoria:"Rapport"},
+{nombre:"La Alternativa (No el Sí o No)",desc:"Nunca preguntes '¿Lo quiere?' Siempre da dos opciones. El cerebro elige entre A o B, no entre SÍ o NO.",ejemplo:"— ¿Prefiere el plan de 300 UF o el de 500 UF?\n— ¿Lo dejamos con deducible de 3 UF o de 5 UF?\nNunca: '¿Quiere contratar el seguro?'",categoria:"Cierre"},
+{nombre:"SPIN Selling",desc:"Pregunta en orden: Situación → Problema → Implicación → Necesidad. Guía al cliente a descubrir solo que necesita el producto.",ejemplo:"S: '¿Tiene auto propio?' → P: '¿Qué haría si se lo roban mañana?' → I: '¿Cuánto le costaría comprar otro?' → N: 'Con el seguro de pérdida total, usted recupera el valor completo.'",categoria:"Descubrimiento"},
+{nombre:"Storytelling: El Caso Real",desc:"Cuenta una historia real (o realista) de un cliente que se benefició del seguro. Las historias activan la emoción, y la emoción cierra ventas.",ejemplo:"'La semana pasada un cliente como usted me dijo lo mismo, que no necesitaba seguro. Ayer me llamó a agradecer porque le diagnosticaron algo y el SONAP le cubrió todo. Pagaba solo $6.000 al mes.'",categoria:"Emoción"},
+{nombre:"El Anclaje de Precio",desc:"Muestra primero el producto más caro, luego el que quieres vender. El segundo siempre parecerá más accesible.",ejemplo:"'Nuestro plan Máxima Protección cuesta X al mes. Pero si busca algo más accesible, el SONAP le da protección oncológica y por muerte accidental por solo 0.16 UF... menos de $6.000.'",categoria:"Precio"},
+{nombre:"La Urgencia Real",desc:"Usa datos reales para crear urgencia legítima. No inventes presión, usa estadísticas.",ejemplo:"'En Chile, 1 de cada 3 personas desarrollará cáncer. Cada 15 minutos alguien es diagnosticado. El mejor momento para asegurarse es cuando está sano, porque después ya no se puede.'",categoria:"Urgencia"},
+{nombre:"El Resumen Inverso",desc:"Antes del cierre, resume todo lo que el cliente dijo que necesitaba y muestra cómo tu producto lo cubre punto por punto.",ejemplo:"'Entonces usted me dijo que: 1) Le preocupa su familia ✓, 2) Quiere algo económico ✓, 3) Que no sea complicado ✓. El SONAP cubre exactamente esos 3 puntos. ¿Lo activamos?'",categoria:"Cierre"}
+];
+const VENTAS_TIPS=["Nunca hables mal de la competencia. Habla bien de tu producto.","El 80% de las ventas se cierran después del 5to contacto. No te rindas al primer 'no'.","Usa el nombre del cliente al menos 3 veces en la conversación.","Sonríe cuando hables por teléfono. Se nota en la voz.","El mejor momento para ofrecer un seguro es cuando el cliente acaba de abrir una cuenta o pedir un crédito.","Pregunta más de lo que afirmas. El que pregunta controla la conversación.","Después de hacer la pregunta de cierre, CÁLLATE. El primero que habla pierde.","Viste profesional. La primera impresión se forma en 7 segundos."];
+
+function renderVentas(){
+const frase=VENTAS_FRASES[Math.floor(Math.random()*VENTAS_FRASES.length)];
+const tip=VENTAS_TIPS[Math.floor(Math.random()*VENTAS_TIPS.length)];
+let h=`<div class="ventas-hero"><div class="ventas-frase">${frase}</div></div>`;
+h+=`<div class="tip-card"><div class="tip-header">💡 Tip Esencial</div><div class="tip-text">${tip}</div></div>`;
+h+=`<h2 class="section-title">Secciones</h2><div class="ventas-sections">`;
+h+=`<div class="action-btn" onclick="showVentasSeccion('estrategias')" style="padding:20px"><span class="action-icon">♟️</span><span>Estrategias</span><span style="font-size:11px;color:var(--text3)">8 técnicas pro</span></div>`;
+h+=`<div class="action-btn" onclick="navigateTo('simulador')" style="padding:20px"><span class="action-icon">🎭</span><span>Entrenamiento</span><span style="font-size:11px;color:var(--text3)">Practicar ventas</span></div>`;
+h+=`<div class="action-btn" onclick="navigateTo('quiz')" style="padding:20px"><span class="action-icon">🧠</span><span>Quiz</span><span style="font-size:11px;color:var(--text3)">Pon a prueba</span></div>`;
+h+=`</div>`;
+h+=`<div id="ventasSeccionContent"></div>`;
+document.getElementById('ventasContent').innerHTML=h;
+}
+
+function showVentasSeccion(sec){
+let h='';
+if(sec==='estrategias'){
+h+=`<h2 class="section-title" style="margin-top:24px">Estrategias de Venta</h2>`;
+ESTRATEGIAS.forEach((e,i)=>{
+h+=`<div class="estrategia-card" onclick="this.classList.toggle('open')">
+<div class="estrategia-header"><div class="estrategia-num">${i+1}</div><div><div class="estrategia-nombre">${e.nombre}</div><div class="estrategia-cat">${e.categoria}</div></div><div class="estrategia-arrow">▼</div></div>
+<div class="estrategia-body"><p class="estrategia-desc">${e.desc}</p><div class="estrategia-ejemplo"><div class="estrategia-ejemplo-title">Ejemplo en BancoEstado:</div><pre class="estrategia-ejemplo-text">${e.ejemplo}</pre></div></div>
+</div>`;
+});
+}
+document.getElementById('ventasSeccionContent').innerHTML=h;
+document.getElementById('ventasSeccionContent').scrollIntoView({behavior:'smooth'});
+}
 function setupNav(){document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>navigateTo(b.dataset.page)));}
 
 // Streak
