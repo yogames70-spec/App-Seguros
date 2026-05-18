@@ -23,14 +23,14 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:
 @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
 
 .splash-content{text-align:center;position:relative;z-index:2;animation:fadeUp 1s ease}
-.splash-time{font-size:13px;font-weight:600;color:var(--text3);letter-spacing:4px;text-transform:uppercase;margin-bottom:32px}
+.splash-time{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:3px;text-transform:uppercase;margin-bottom:28px}
 .splash-greeting{font-size:42px;font-weight:900;line-height:1.15;margin-bottom:8px}
 .splash-greeting .gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientShift 6s ease infinite}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.splash-name{font-size:28px;font-weight:800;color:var(--text);margin-bottom:40px}
-.splash-quote{font-size:16px;color:var(--text2);line-height:1.6;max-width:320px;margin:0 auto 48px;font-style:italic;font-weight:400}
+.splash-name{font-size:18px;font-weight:600;color:var(--text2);margin-bottom:36px}
+.splash-quote{font-size:20px;color:var(--text);line-height:1.6;max-width:320px;margin:0 auto 48px;font-style:italic;font-weight:500}
 .splash-quote::before{content:'"';font-size:48px;color:var(--accent2);opacity:.3;display:block;margin-bottom:-16px;font-style:normal}
-.splash-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,var(--accent2),#5535cc);color:#fff;border:none;border-radius:60px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(124,92,252,0.35);transition:all .3s;letter-spacing:0.5px}
+.splash-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,var(--accent2),#5535cc);color:#fff;border:none;border-radius:60px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(124,92,252,0.35);transition:all .3s;letter-spacing:2px;text-transform:uppercase}
 .splash-cta:active{transform:scale(.96);box-shadow:0 4px 20px rgba(124,92,252,0.25)}
 .splash-cta .cta-arrow{font-size:20px;animation:bounce 2s infinite}
 @keyframes bounce{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
