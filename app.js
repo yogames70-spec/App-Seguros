@@ -40,42 +40,42 @@ function navigateTo(p){document.querySelectorAll('.page').forEach(el=>el.classLi
 // === VENTAS EXTRAS: Objeciones, Detector, Frases Cierre, Errores, Desafío ===
 
 const OBJECIONES=[
-{obj:"No tengo plata",resp:["No es un gasto, es una inversión. Son $6.000 al mes, menos que un café al día. Si le pasa algo, recibe hasta 600 UF. ¿Puede darse el lujo de no tenerlo?","Entiendo que anda ajustado. Justamente por eso: si le pasa algo sin seguro, ¿de dónde saca la plata para tratarse? El SONAP es la opción más económica que existe.","Mire, muchos clientes me dicen lo mismo. Pero cuando les explico que son menos de $200 diarios, se dan cuenta de que sí pueden. ¿Probamos?"]},
-{obj:"Lo voy a pensar",resp:["Perfecto, ¿qué es exactamente lo que necesita pensar? Así lo ayudo a resolverlo ahora.","Claro. Pero le cuento algo: el 90% de las personas que me dicen 'lo voy a pensar' nunca vuelven. No porque no quieran, sino porque se les olvida. ¿Por qué no lo dejamos listo hoy?","Entiendo. Solo le recuerdo que los seguros se contratan cuando uno está sano. Después ya no se puede. ¿Lo dejamos activo por mientras?"]},
-{obj:"Mi señora/marido tiene que decidir",resp:["Lo entiendo. ¿Y si lo dejamos preaprobado para que usted le cuente en la casa? Si no le gusta, lo anulamos sin costo.","Claro. Pero justamente este seguro es PARA proteger a su familia. ¿No cree que su señora estaría de acuerdo en proteger a los hijos?","Perfecto. ¿Tiene el teléfono de su señora? La podemos llamar ahora y le explicamos juntos en 2 minutos."]},
-{obj:"Ya tengo seguro en otro lado",resp:["Excelente que se preocupe de estar protegido. ¿Me permite preguntarle qué cubre su seguro actual? Muchas veces hay coberturas que se complementan.","Muy bien. ¿Y su seguro actual cubre cáncer? Porque el SONAP es complementario, no reemplaza al que tiene. Son coberturas distintas.","Perfecto. ¿Cuánto paga al mes? Porque muchos clientes descubren que por menos plata pueden tener mejor cobertura acá."]},
-{obj:"No creo en los seguros",resp:["Lo entiendo. Nadie cree hasta que lo necesita. ¿Le puedo contar algo que le pasó a un cliente la semana pasada?","Respeto su posición. Pero los accidentes y enfermedades no preguntan si usted cree o no. ¿No prefiere estar cubierto por si acaso?","¿Me permite hacerle una pregunta? Si mañana le diagnostican algo grave, ¿quién paga el tratamiento? El SONAP existe para eso."]},
-{obj:"Después vengo",resp:["Claro, ¿cuándo le queda mejor? Le agendo una hora para que no tenga que esperar.","Entiendo que tiene apuro. Pero esto toma literalmente 3 minutos. ¿Me da esos 3 minutos ahora y se va tranquilo?","Perfecto. Pero le cuento algo: la mayoría de los que me dicen 'después vengo' no vuelven. No porque no quieran, sino porque la vida pasa. ¿3 minutitos ahora?"]},
-{obj:"Es muy caro",resp:["¿Comparado con qué? Porque una noche de hospital cuesta 10 veces más que un año de seguro.","Entiendo. ¿Cuánto gasta al mes en café o en el teléfono? El SONAP cuesta menos que eso y puede salvarle la vida financiera.","Mire, le voy a mostrar algo: el plan más accesible cuesta X. ¿Eso es realmente caro para la tranquilidad de su familia?"]},
-{obj:"No lo necesito, estoy sano",resp:["Justamente por eso es el mejor momento. Los seguros se contratan SANO. Una vez enfermo, ninguna compañía lo acepta.","Me alegro que esté sano. Ojalá siga así siempre. Pero 1 de cada 3 personas desarrollará cáncer. El seguro es como el cinturón: se pone ANTES del choque.","Excelente. Y para que siga tranquilo si algo cambia, el SONAP le da ese respaldo por menos de $200 al día."]},
-{obj:"Tengo que ver mis números primero",resp:["Claro. Mientras tanto le dejo la información. Pero le adelanto: son $6.000 al mes. ¿Eso cabe en su presupuesto?","Entiendo. ¿Quiere que hagamos los números juntos ahora? Le muestro exactamente cuánto es diario y qué cubre.","Perfecto. Mire, para que sea más fácil: el valor mensual es menos que un almuerzo. ¿Eso le parece razonable?"]},
-{obj:"Me están ofreciendo seguros en todos lados",resp:["Tiene razón, hay mucha oferta. La diferencia es que BancoEstado es respaldado por el Estado, con más de 100 años. ¿Dónde más le dan esa seguridad?","Es verdad. Por eso mismo le conviene comparar. ¿Me deja mostrarle lo que nosotros cubrimos versus el promedio del mercado?","Entiendo que es mucha información. Por eso le hago fácil: este seguro cubre X, cuesta Y, y se activa ahora. Sin letra chica."]}
+{obj:"No tengo plata",resp:["No es un gasto, es una inversión. Son $6.000 al mes, menos que un café al día. Si le pasa algo, recibe hasta 600 UF. ¿Puede darse el lujo de no tenerlo?","Entiendo que anda ajustado. Justamente por eso: si le pasa algo sin seguro, ¿de dónde saca la plata? El SONAP es la opción más económica.","Muchos clientes me dicen lo mismo. Pero cuando les explico que son menos de $200 diarios, se dan cuenta de que sí pueden. ¿Probamos?"]},
+{obj:"Lo voy a pensar",resp:["Perfecto, ¿qué es exactamente lo que necesita pensar? Así lo ayudo a resolverlo ahora.","El 90% de las personas que dicen 'lo voy a pensar' no vuelven. No porque no quieran, sino porque se les olvida. ¿Lo dejamos listo hoy?","Solo le recuerdo que los seguros se contratan cuando uno está bien. ¿Lo dejamos activo por mientras?"]},
+{obj:"Mi señora/marido tiene que decidir",resp:["¿Y si lo dejamos preaprobado para que le cuente en la casa? Si no le gusta, lo anulamos sin costo.","Justamente este seguro es PARA proteger a su familia. ¿No cree que estaría de acuerdo?","¿Tiene el teléfono? La podemos llamar ahora y le explicamos juntos en 2 minutos."]},
+{obj:"Ya tengo seguro en otro lado",resp:["Excelente que se preocupe de estar protegido. ¿Me permite preguntarle qué cubre? Muchas veces hay coberturas que se complementan.","Nuestro seguro es complementario, no reemplaza al que tiene. Son coberturas distintas.","¿Cuánto paga al mes? Muchos clientes descubren que por menos plata pueden tener mejor cobertura acá."]},
+{obj:"No creo en los seguros",resp:["Lo entiendo. Nadie cree hasta que lo necesita. ¿Le puedo contar algo que le pasó a un cliente?","Respeto su posición. Pero los imprevistos no avisan. ¿No prefiere estar cubierto por si acaso?","Si mañana le pasa algo inesperado, ¿quién cubre los gastos? El seguro existe para eso."]},
+{obj:"Después vengo",resp:["¿Cuándo le queda mejor? Le agendo una hora para que no espere.","Esto toma literalmente 3 minutos. ¿Me da esos 3 minutos y se va tranquilo?","La mayoría de los que dicen 'después vengo' no vuelven porque la vida pasa. ¿3 minutitos ahora?"]},
+{obj:"Es muy caro",resp:["¿Comparado con qué? Porque un imprevisto médico cuesta 10 veces más que un año de seguro.","¿Cuánto gasta al mes en café o en el teléfono? El seguro cuesta menos que eso.","El plan más accesible cuesta X. ¿Eso es realmente caro para la tranquilidad de su familia?"]},
+{obj:"No lo necesito, estoy sano",resp:["Justamente por eso es el mejor momento. Los seguros se contratan estando bien. Después puede ser tarde.","Me alegro. Ojalá siga así siempre. Pero el seguro es como el cinturón: se pone ANTES del choque, no después.","Para que siga tranquilo si algo cambia, el SONAP le da respaldo por menos de $200 al día."]},
+{obj:"Tengo que ver mis números",resp:["Son $6.000 al mes. ¿Eso cabe en su presupuesto?","¿Quiere que hagamos los números juntos ahora? Le muestro exactamente cuánto es diario.","El valor mensual es menos que un almuerzo. ¿Eso le parece razonable?"]},
+{obj:"Me ofrecen seguros en todos lados",resp:["Tiene razón. La diferencia es que BancoEstado es respaldado por el Estado, con más de 100 años.","Por eso le conviene comparar. ¿Me deja mostrarle lo que cubrimos versus el promedio?","Le hago fácil: cubre X, cuesta Y, se activa ahora. Sin letra chica."]}
 ];
 
-const DETECTOR=[
-{tramite:"Abre cuenta / CuentaRUT",producto:"Sale Seguro Plus",porque:"Va a usar cajero y tarjeta. Protección contra asaltos y fraude."},
-{tramite:"Paga dividendo",producto:"Seguro Hogar",porque:"Tiene casa. El seguro del crédito protege al banco, no a él."},
-{tramite:"Viene con hijo/familia",producto:"SONAP",porque:"Instinto protector de padres. Cáncer + muerte accidental."},
-{tramite:"Pide crédito consumo",producto:"Seguro Muerte Accidental",porque:"Si le pasa algo, la deuda la paga el seguro, no la familia."},
-{tramite:"Cobra pensión/bono",producto:"Sale Seguro Plus",porque:"Adultos mayores vulnerables a asaltos al salir del banco."},
-{tramite:"Viene en auto",producto:"SOAP / Pérdida Total",porque:"SOAP obligatorio. Pérdida Total para autos viejos."},
-{tramite:"Consulta por viaje",producto:"Seguro Viaje",porque:"Una noche de hospital en el extranjero = millones."},
-{tramite:"Tiene negocio/Pyme",producto:"Salud Pyme / Seguro Pyme",porque:"Proteger mercadería, local y ofrecer salud a empleados."},
-{tramite:"Deposita plata",producto:"SONAP / Ahorro",porque:"Tiene liquidez. Es buen momento para hablar de protección."},
-{tramite:"Paga cuenta/servicio",producto:"Sale Seguro",porque:"Usa la tarjeta frecuentemente. Proteger transacciones."}
+const DETECTOR_QUIZ=[
+{tramite:"Cliente abre CuentaRUT",correcto:"Sale Seguro Plus",opciones:["SONAP","Sale Seguro Plus","Seguro Hogar","SOAP"]},
+{tramite:"Cliente paga dividendo hipotecario",correcto:"Seguro Hogar",opciones:["Sale Seguro","Seguro Hogar","Seguro Viaje","SOAP"]},
+{tramite:"Mamá viene con hijo pequeño",correcto:"SONAP",opciones:["SONAP","SOAP","Sale Seguro Plus","Seguro Pyme"]},
+{tramite:"Cliente pide crédito de consumo",correcto:"Seguro Muerte Accidental",opciones:["Seguro Hogar","Seguro Viaje","Seguro Muerte Accidental","SOAP"]},
+{tramite:"Abuelito cobra pensión",correcto:"Sale Seguro Plus",opciones:["SONAP","Seguro Pyme","Sale Seguro Plus","Seguro Hogar"]},
+{tramite:"Cliente viene en auto a la sucursal",correcto:"SOAP / Pérdida Total",opciones:["Sale Seguro","SONAP","Seguro Viaje","SOAP / Pérdida Total"]},
+{tramite:"Cliente pregunta por viaje al extranjero",correcto:"Seguro Viaje",opciones:["Seguro Viaje","SONAP","Sale Seguro Plus","Seguro Hogar"]},
+{tramite:"Dueño de negocio pide crédito Pyme",correcto:"Seguro Pyme",opciones:["SONAP","Seguro Hogar","Seguro Pyme","SOAP"]},
+{tramite:"Cliente deposita plata a plazo",correcto:"SONAP",opciones:["SOAP","Sale Seguro","Seguro Viaje","SONAP"]},
+{tramite:"Cliente paga cuentas con tarjeta frecuentemente",correcto:"Sale Seguro",opciones:["Sale Seguro","SONAP","Seguro Hogar","Seguro Pyme"]}
 ];
 
 const FRASES_CIERRE=[
-"¿Se lo dejo activado con cargo a su cuenta?",
-"¿Prefiere el plan básico o el completo?",
-"¿Lo dejamos con cargo mensual o anual?",
-"¿Empezamos con este y después vemos los otros?",
-"¿Se lo activo ahora que estamos acá o prefiere volver otro día?",
-"Son 3 minutos. ¿Lo hacemos?",
-"¿Lo dejamos listo para que se vaya tranquilo?",
-"¿Con cargo a la cuenta corriente o a la CuentaRUT?",
-"Perfecto, solo necesito su RUT y en 2 minutos queda listo.",
-"¿Le parece si lo activamos y si no le gusta lo anulamos sin costo?"
+{frase:"¿Se lo dejo activado con cargo a su cuenta?",porque:"Asume que el cliente ya decidió. No le das opción de decir 'no', solo estás confirmando la acción."},
+{frase:"¿Prefiere el plan básico o el completo?",porque:"Técnica La Alternativa: ambas opciones son SÍ. El cerebro elige entre A o B, no entre SÍ o NO."},
+{frase:"¿Lo dejamos con cargo mensual o anual?",porque:"Misma lógica de Alternativa pero enfocada en el método de pago. Ya asumiste que compra."},
+{frase:"¿Empezamos con este y después vemos los otros?",porque:"Reduce la presión: 'empezamos' suena a paso pequeño. El cliente siente que no se está comprometiendo a todo."},
+{frase:"¿Se lo activo ahora o prefiere volver otro día?",porque:"Urgencia sutil: 'volver otro día' suena a pérdida de tiempo. La mayoría elige 'ahora'."},
+{frase:"Son 3 minutos. ¿Lo hacemos?",porque:"Minimiza el esfuerzo percibido. '3 minutos' hace que parezca algo trivial y fácil."},
+{frase:"¿Lo dejamos listo para que se vaya tranquilo?",porque:"Conecta con la emoción de tranquilidad. No estás vendiendo un seguro, estás vendiendo paz mental."},
+{frase:"¿Con cargo a la cuenta corriente o a la CuentaRUT?",porque:"Alternativa técnica: el cliente ya está eligiendo CÓMO pagar, no SI pagar."},
+{frase:"Solo necesito su RUT y en 2 minutos queda listo.",porque:"Elimina fricción: suena tan fácil que decir 'no' sería más trabajo que decir 'sí'."},
+{frase:"¿Lo activamos? Si no le gusta lo anulamos sin costo.",porque:"Elimina el riesgo percibido. El cliente siente que no pierde nada probando."}
 ];
 
 const ERRORES_FATALES=[
@@ -83,25 +83,11 @@ const ERRORES_FATALES=[
 {error:"Preguntar '¿Lo quiere?'",porque:"Le das la opción fácil de decir NO. El cerebro siempre elige el camino fácil.",solucion:"Usa La Alternativa: '¿Plan A o Plan B?' Ambas son SÍ."},
 {error:"Aceptar el primer NO",porque:"El 80% de las ventas se cierran después del 5to contacto. Un NO es solo el inicio de la conversación.",solucion:"Pregunta: '¿Qué es lo que le preocupa?' y aborda la objeción real."},
 {error:"No usar el nombre del cliente",porque:"El nombre propio es la palabra favorita de cualquier persona. No usarlo = trato impersonal.",solucion:"Usa su nombre al menos 3 veces. 'Don Carlos, le cuento algo...'"},
-{error:"Hablar en jerga técnica",porque:"'0.16 UF mensuales con cobertura oncológica' no le dice nada al cliente. Solo lo confundes.",solucion:"Traduce: '$6.000 al mes, menos que un café. Si te da cáncer, te pagan todo.'"},
-{error:"Ofrecer sin resolver primero",porque:"Si el cliente vino a pagar una cuenta y tú le hablas de seguros antes de resolver su trámite, se molesta.",solucion:"PRIMERO resuelve lo que vino a hacer. DESPUÉS ofreces. El orden importa."},
-{error:"Hablar mal de la competencia",porque:"Genera desconfianza. Si hablas mal de otros, el cliente piensa: '¿Qué dirá de mí cuando me vaya?'",solucion:"Habla bien de TU producto. Deja que el cliente compare solo."},
-{error:"No cerrar nunca",porque:"Muchos vendedores informan perfecto pero nunca hacen la pregunta de cierre. Informar NO es vender.",solucion:"Siempre termina con una pregunta de acción: '¿Lo activamos?'"}
+{error:"Hablar en jerga técnica",porque:"'0.16 UF mensuales con cobertura oncológica' no le dice nada al cliente.",solucion:"Traduce a lenguaje simple: '$6.000 al mes, menos que un café. Si le pasa algo, queda cubierto.'"},
+{error:"Ofrecer sin resolver primero",porque:"Si el cliente vino a pagar una cuenta y le hablas de seguros antes de su trámite, se molesta.",solucion:"PRIMERO resuelve lo que vino a hacer. DESPUÉS ofreces."},
+{error:"Hablar mal de la competencia",porque:"Genera desconfianza. Si hablas mal de otros, el cliente piensa: '¿Qué dirá de mí?'",solucion:"Habla bien de TU producto. Deja que el cliente compare solo."},
+{error:"No cerrar nunca",porque:"Muchos vendedores informan perfecto pero nunca hacen la pregunta de cierre. Informar NO es vender.",solucion:"Siempre termina con pregunta de acción: '¿Lo activamos?'"}
 ];
-
-const DESAFIOS=[
-"Hoy usa la técnica del ESPEJO con al menos 2 clientes. Repite sus últimas palabras en forma de pregunta.",
-"Hoy cierra usando SOLO La Alternativa. Nunca preguntes '¿lo quiere?' Da siempre 2 opciones.",
-"Hoy cuenta una HISTORIA REAL (o realista) a cada cliente que atiendas. Las historias venden más que los datos.",
-"Hoy usa el nombre del cliente AL MENOS 3 veces en cada conversación. Mide el impacto.",
-"Hoy intenta hacer las 4 preguntas SPIN (Situación, Problema, Implicación, Necesidad) con al menos 1 cliente.",
-"Hoy practica Los 2 SÍ antes del cierre. Dos preguntas obvias con respuesta SÍ antes de la pregunta de cierre.",
-"Hoy tu meta es superar AL MENOS 1 objeción. Cuando te digan 'no', no te rindas. Usa las respuestas del Objection Killer.",
-"Hoy ofrece un seguro a TODOS los clientes que atiendas, sin excepción. Mide tu tasa de conversión.",
-"Hoy usa el RESUMEN INVERSO en al menos 1 cierre. Resume lo que el cliente dijo y muéstrale cómo tu producto lo resuelve.",
-"Hoy practica el ANCLAJE DE PRECIO. Muestra primero el producto caro, luego el accesible. Mide la reacción."
-];
-
 
 // Ventas Module
 const VENTAS_FRASES=["Vender no es convencer, es ayudar al cliente a tomar la mejor decisión para su vida.","El mejor vendedor no es el que más habla, sino el que mejor escucha.","No vendas productos, vende la solución a un problema que el cliente ni sabía que tenía.","Tu superpoder es transformar una atención rutinaria en una oportunidad.","Las ventas se cierran con confianza, no con presión."];
@@ -128,7 +114,7 @@ h+=`<div class="desafio-card"><div class="desafio-header">🎯 DESAFÍO DE HOY</
 h+=`<h2 class="section-title">Secciones</h2><div class="ventas-sections">`;
 h+=`<div class="action-btn" onclick="showVentasSeccion('estrategias')" style="padding:20px"><span class="action-icon">♟️</span><span>Estrategias</span><span style="font-size:11px;color:var(--text3)">8 técnicas pro</span></div>`;
 h+=`<div class="action-btn" onclick="showVentasSeccion('objeciones')" style="padding:20px"><span class="action-icon">🛡️</span><span>Objection Killer</span><span style="font-size:11px;color:var(--text3)">10 objeciones</span></div>`;
-h+=`<div class="action-btn" onclick="showVentasSeccion('detector')" style="padding:20px"><span class="action-icon">🎯</span><span>Detector</span><span style="font-size:11px;color:var(--text3)">Trámite → Producto</span></div>`;
+
 h+=`<div class="action-btn" onclick="showVentasSeccion('frases')" style="padding:20px"><span class="action-icon">⚡</span><span>Frases de Cierre</span><span style="font-size:11px;color:var(--text3)">10 frases letales</span></div>`;
 h+=`<div class="action-btn" onclick="showVentasSeccion('errores')" style="padding:20px"><span class="action-icon">❌</span><span>Errores Fatales</span><span style="font-size:11px;color:var(--text3)">Lo que NO hacer</span></div>`;
 h+=`<div class="action-btn" onclick="navigateTo('simulador')" style="padding:20px"><span class="action-icon">🎭</span><span>Entrenamiento</span><span style="font-size:11px;color:var(--text3)">6 escenarios</span></div>`;
@@ -156,18 +142,12 @@ OBJECIONES.forEach((o,i)=>{
 h+=`<div class="estrategia-card" onclick="this.classList.toggle('open')"><div class="estrategia-header"><div class="estrategia-num" style="background:linear-gradient(135deg,#ff5a8a,#ff3366)">${i+1}</div><div><div class="estrategia-nombre">"${o.obj}"</div><div class="estrategia-cat">Objeción</div></div><div class="estrategia-arrow">▼</div></div><div class="estrategia-body">${o.resp.map((r,j)=>`<div class="objecion-resp"><div class="objecion-resp-num">Respuesta ${j+1}:</div><p style="font-size:13px;color:var(--text);line-height:1.6;margin:4px 0 12px">${r}</p></div>`).join('')}</div></div>`;
 });
 }
-if(sec==='detector'){
-h+=`<h2 class="section-title" style="margin-top:24px">Detector de Oportunidad</h2>`;
-h+=`<p style="color:var(--text2);font-size:13px;margin-bottom:16px;line-height:1.6">Si el cliente viene a hacer X → ofrécele Y.</p>`;
-DETECTOR.forEach(d=>{
-h+=`<div class="detector-card"><div class="detector-tramite">${d.tramite}</div><div class="detector-arrow">→</div><div class="detector-producto">${d.producto}</div><div class="detector-porque">${d.porque}</div></div>`;
-});
-}
+
 if(sec==='frases'){
 h+=`<h2 class="section-title" style="margin-top:24px">Frases de Cierre Rápido</h2>`;
-h+=`<p style="color:var(--text2);font-size:13px;margin-bottom:16px;line-height:1.6">Memorízalas y úsalas al momento de cerrar.</p>`;
+h+=`<p style="color:var(--text2);font-size:13px;margin-bottom:16px;line-height:1.6">Toca cada frase para ver por qué funciona.</p>`;
 FRASES_CIERRE.forEach((f,i)=>{
-h+=`<div class="frase-card"><span class="frase-num">${i+1}</span><span class="frase-text">"${f}"</span></div>`;
+h+=`<div class="estrategia-card" onclick="this.classList.toggle('open')"><div class="estrategia-header"><div class="estrategia-num" style="background:linear-gradient(135deg,var(--accent4),var(--accent3))">${i+1}</div><div><div class="estrategia-nombre" style="font-style:italic">"${f.frase}"</div><div class="estrategia-cat">Frase de cierre</div></div><div class="estrategia-arrow">▼</div></div><div class="estrategia-body"><p class="estrategia-desc"><strong>¿Por qué funciona?</strong><br>${f.porque}</p></div></div>`;
 });
 }
 if(sec==='errores'){
