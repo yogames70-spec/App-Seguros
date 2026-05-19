@@ -180,8 +180,6 @@ h+=`<div class="estrategia-card" onclick="this.classList.toggle('open')"><div cl
 document.getElementById('ventasSeccionContent').innerHTML=h;
 document.getElementById('ventasSeccionContent').scrollIntoView({behavior:'smooth'});
 }
-);
-}
 function setupNav(){document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>navigateTo(b.dataset.page)));}
 
 // Streak
