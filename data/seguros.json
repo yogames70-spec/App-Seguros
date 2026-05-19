@@ -257,6 +257,59 @@
             "Trabajadores con contrato indefinido"
           ],
           "tip_venta": "Oportunidad enorme con empresarios Pyme. 'Ofrezca salud complementaria a sus empleados y mejore su retención de talento.'"
+        },
+        {
+          "id": "accidentes-personales",
+          "nombre": "Seguro Accidentes Personales",
+          "descripcion": "Protección económica ante fallecimiento o invalidez total y permanente 2/3 por accidente. Pago único al beneficiario para cubrir gastos del hogar y familia.",
+          "aseguradora": "MetLife Chile Seguros de Vida S.A.",
+          "coberturas": [
+            "Muerte Accidental: pago único del capital asegurado al beneficiario designado o herederos legales",
+            "Invalidez Total y Permanente 2/3 Accidental (solo Plan Full): anticipo del capital asegurado al asegurado en vida",
+            "Cobertura en Chile y en el extranjero",
+            "Beneficiario libre: el asegurado elige a quién designar como beneficiario"
+          ],
+          "planes": [
+            {"nombre": "Plus", "precio_uf_anual": 0.43, "capital_uf": 400},
+            {"nombre": "Full", "precio_uf_anual": 0.67, "capital_uf": 700, "incluye": "Invalidez Total y Permanente 2/3"}
+          ],
+          "requisitos": [
+            "Edad mínima de ingreso: 18 años",
+            "Edad máxima de ingreso: 78 años y 364 días",
+            "Edad máxima de permanencia: 79 años y 364 días",
+            "Medio de pago BancoEstado",
+            "NO requiere Declaración de Salud"
+          ],
+          "exclusiones_muerte": [
+            "Actos calificados como delito o participación en rebelión, terrorismo",
+            "Suicidio o heridas autoinfligidas",
+            "Intoxicación por narcóticos o drogas (salvo prescripción médica)",
+            "Conducción bajo influencia del alcohol",
+            "Riesgos nucleares o atómicos"
+          ],
+          "exclusiones_invalidez": [
+            "Intento de suicidio o lesiones autoinfligidas",
+            "Participación en actos temerarios o actividades notoriamente peligrosas",
+            "Conducción en estado de ebriedad",
+            "Vuelo en aeronave no comercial",
+            "Estar bajo efectos de drogas o alucinógenos"
+          ],
+          "siniestro": {
+            "plazo_denuncia": "240 días corridos desde conocimiento del siniestro",
+            "canales_denuncia": ["www.bancoestado.cl", "Cualquier sucursal BancoEstado", "FonoSeguros 600 660 1212", "Corredor de seguros o compañía aseguradora"],
+            "documentos_muerte": ["Copia del parte policial"],
+            "documentos_invalidez": ["Copia legalizada del Dictamen de invalidez emitido por la Superintendencia de AFP o COMPIN"]
+          },
+          "renovacion": "Póliza colectiva anual, del 1 de enero al 31 de diciembre, con renovación automática",
+          "beneficios_clave": [
+            "Contratación en sucursal, online o mobile",
+            "Pago único anual o renovación automática",
+            "Sin Declaración de Salud",
+            "Tú eliges al beneficiario (en sucursal)",
+            "Fácil y rápida contratación"
+          ],
+          "codigo_cmf": "POL 3 2024 0214 (Plus) / CAD 320190155 (Full)",
+          "tip_venta": "Seguro baratísimo: desde 0.43 UF al año. Perfecto para cualquier cliente, no necesita declaración de salud. Argumento: 'Por menos de $20.000 al año, su familia recibe 400 UF si le pasa algo. Se contrata en 2 minutos y no le van a preguntar nada de salud.'"
         }
       ]
     },
