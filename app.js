@@ -89,6 +89,19 @@ const ERRORES_FATALES=[
 {error:"No cerrar nunca",porque:"Muchos vendedores informan perfecto pero nunca hacen la pregunta de cierre. Informar NO es vender.",solucion:"Siempre termina con pregunta de acción: '¿Lo activamos?'"}
 ];
 
+const DESAFIOS=[
+"Hoy usa la técnica del ESPEJO con al menos 2 clientes. Repite sus últimas palabras en forma de pregunta.",
+"Hoy cierra usando SOLO La Alternativa. Nunca preguntes '¿lo quiere?' Da siempre 2 opciones.",
+"Hoy cuenta una HISTORIA REAL a cada cliente que atiendas. Las historias venden más que los datos.",
+"Hoy usa el nombre del cliente AL MENOS 3 veces en cada conversación.",
+"Hoy intenta hacer las 4 preguntas SPIN con al menos 1 cliente.",
+"Hoy practica Los 2 SÍ antes del cierre. Dos preguntas obvias con respuesta SÍ antes de la pregunta de cierre.",
+"Hoy tu meta es superar AL MENOS 1 objeción. Cuando te digan 'no', usa el Objection Killer.",
+"Hoy ofrece un seguro a TODOS los clientes que atiendas, sin excepción. Mide tu tasa de conversión.",
+"Hoy usa el RESUMEN INVERSO en al menos 1 cierre.",
+"Hoy practica el ANCLAJE DE PRECIO. Muestra primero el producto caro, luego el accesible."
+];
+
 // Ventas Module
 const VENTAS_FRASES=["Vender no es convencer, es ayudar al cliente a tomar la mejor decisión para su vida.","El mejor vendedor no es el que más habla, sino el que mejor escucha.","No vendas productos, vende la solución a un problema que el cliente ni sabía que tenía.","Tu superpoder es transformar una atención rutinaria en una oportunidad.","Las ventas se cierran con confianza, no con presión."];
 const ESTRATEGIAS=[
@@ -195,10 +208,153 @@ const el=document.getElementById('segurosTabContent');
 if(tab==='catalogo'){
 el.innerHTML=`<div class="search-box"><input type="text" id="searchInput" placeholder="Buscar seguro..." oninput="filterProducts()"></div><div class="category-tabs" id="categoryTabs"></div><div id="productList" class="product-list"></div>`;
 renderProductos();
-} else {
+} else if(tab==='squiz') {
 sqState={idx:0,score:0,total:SEGUROS_QUIZ.length,answered:false};
 renderSQuiz();
+} else if(tab==='registro') {
+renderRegistro();
 }
+}
+
+// Sales Registration System
+function getSales(){return JSON.parse(localStorage.getItem('salesLog')||'[]');}
+function saveSales(s){localStorage.setItem('salesLog',JSON.stringify(s));}
+function getMisProductos(){return JSON.parse(localStorage.getItem('misProductos')||'["SONAP","Sale Seguro Plus","Seguro Accidentes Personales"]');}
+function saveMisProductos(p){localStorage.setItem('misProductos',JSON.stringify(p));}
+
+function renderRegistro(){
+const el=document.getElementById('segurosTabContent');
+const prods=getMisProductos();
+let h=`<h2 class="section-title" style="margin-top:8px">Registrar Venta</h2>`;
+h+=`<div style="background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px">`;
+h+=`<select id="saleProduct" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;margin-bottom:10px">`;
+prods.forEach(p=>{h+=`<option value="${p}">${p}</option>`;});
+h+=`</select>`;
+h+=`<input type="text" id="saleClient" placeholder="Nombre del cliente (opcional)" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;margin-bottom:10px;box-sizing:border-box">`;
+h+=`<button class="primary-btn" style="width:100%" onclick="registrarVenta()">✅ Registrar Venta</button>`;
+h+=`</div>`;
+
+h+=`<h2 class="section-title">Mis Productos (mesón)</h2>`;
+h+=`<div style="background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px">`;
+h+=`<div style="display:flex;gap:8px;margin-bottom:10px"><input type="text" id="newProduct" placeholder="Agregar producto..." style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px"><button class="primary-btn" style="padding:10px 16px" onclick="agregarProducto()">+</button></div>`;
+h+=`<div id="misProductosList">`;
+prods.forEach((p,i)=>{h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)"><span style="font-size:13px;color:var(--text)">${p}</span><button onclick="eliminarProducto(${i})" style="background:none;border:none;color:#ff4444;font-size:16px;cursor:pointer">✕</button></div>`;});
+h+=`</div></div>`;
+
+h+=`<h2 class="section-title">Dashboard</h2>`;
+h+=`<div style="display:flex;gap:6px;margin-bottom:12px">`;
+h+=`<button class="primary-btn" style="flex:1;padding:8px;font-size:12px" onclick="renderDashboard('semana')">Semanal</button>`;
+h+=`<button class="primary-btn" style="flex:1;padding:8px;font-size:12px" onclick="renderDashboard('mes')">Mensual</button>`;
+h+=`<button class="primary-btn" style="flex:1;padding:8px;font-size:12px" onclick="renderDashboard('año')">Anual</button>`;
+h+=`</div>`;
+h+=`<div id="dashboardContent"></div>`;
+h+=`<button class="primary-btn" style="width:100%;margin-top:16px;background:linear-gradient(135deg,#00875a,#00c896)" onclick="exportarExcel()">📥 Descargar Excel</button>`;
+
+el.innerHTML=h;
+renderDashboard('semana');
+}
+
+function registrarVenta(){
+const prod=document.getElementById('saleProduct').value;
+const client=document.getElementById('saleClient').value.trim();
+if(!prod)return showToast('Selecciona un producto');
+const sales=getSales();
+sales.push({producto:prod,cliente:client||'Sin nombre',fecha:new Date().toISOString()});
+saveSales(sales);
+state.ventas++;saveState();
+addXP(15);
+showToast('¡Venta registrada! +15 XP');
+renderRegistro();
+}
+
+function agregarProducto(){
+const input=document.getElementById('newProduct');
+const name=input.value.trim();
+if(!name)return;
+const prods=getMisProductos();
+if(prods.includes(name)){showToast('Ya existe');return;}
+prods.push(name);
+saveMisProductos(prods);
+renderRegistro();
+}
+
+function eliminarProducto(i){
+const prods=getMisProductos();
+prods.splice(i,1);
+saveMisProductos(prods);
+renderRegistro();
+}
+
+function renderDashboard(periodo){
+const sales=getSales();
+const now=new Date();
+let filtered,label;
+if(periodo==='semana'){
+const weekAgo=new Date(now-7*86400000);
+filtered=sales.filter(s=>new Date(s.fecha)>=weekAgo);
+label='Esta Semana';
+} else if(periodo==='mes'){
+filtered=sales.filter(s=>{const d=new Date(s.fecha);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
+label='Este Mes';
+} else {
+filtered=sales.filter(s=>new Date(s.fecha).getFullYear()===now.getFullYear());
+label='Este Año';
+}
+
+const byProduct={};
+filtered.forEach(s=>{byProduct[s.producto]=(byProduct[s.producto]||0)+1;});
+const total=filtered.length;
+const topProduct=Object.keys(byProduct).sort((a,b)=>byProduct[b]-byProduct[a])[0]||'-';
+
+let h=`<div style="background:var(--card);border-radius:16px;padding:16px">`;
+h+=`<div style="text-align:center;margin-bottom:16px"><div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px">${label}</div><div style="font-size:42px;font-weight:900;background:linear-gradient(135deg,var(--accent4),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent">${total}</div><div style="font-size:13px;color:var(--text2)">ventas registradas</div></div>`;
+
+if(total>0){
+h+=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border)"><span style="font-size:12px;color:var(--text3)">Producto estrella</span><span style="font-size:13px;font-weight:700;color:var(--text)">${topProduct}</span></div>`;
+const dailyAvg=periodo==='semana'?(total/7).toFixed(1):periodo==='mes'?(total/30).toFixed(1):(total/365).toFixed(1);
+h+=`<div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--border)"><span style="font-size:12px;color:var(--text3)">Promedio diario</span><span style="font-size:13px;font-weight:700;color:var(--text)">${dailyAvg}</span></div>`;
+
+h+=`<div style="margin-top:12px">`;
+Object.keys(byProduct).sort((a,b)=>byProduct[b]-byProduct[a]).forEach(p=>{
+const pct=Math.round((byProduct[p]/total)*100);
+h+=`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text);margin-bottom:4px"><span>${p}</span><span>${byProduct[p]} (${pct}%)</span></div><div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--accent4),var(--accent3));border-radius:3px"></div></div></div>`;
+});
+h+=`</div>`;
+} else {
+h+=`<p style="text-align:center;color:var(--text3);font-size:13px;padding:20px 0">Sin ventas en este período</p>`;
+}
+h+=`</div>`;
+
+h+=`<h2 class="section-title" style="margin-top:16px">Historial</h2>`;
+const recent=filtered.slice(-20).reverse();
+if(recent.length){
+recent.forEach(s=>{
+const d=new Date(s.fecha);
+const fecha=d.toLocaleDateString('es-CL',{day:'2-digit',month:'short'});
+const hora=d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
+h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:600;color:var(--text)">${s.producto}</div><div style="font-size:11px;color:var(--text3)">${s.cliente}</div></div><div style="text-align:right"><div style="font-size:12px;color:var(--text2)">${fecha}</div><div style="font-size:11px;color:var(--text3)">${hora}</div></div></div>`;
+});
+}
+document.getElementById('dashboardContent').innerHTML=h;
+}
+
+function exportarExcel(){
+const sales=getSales();
+if(!sales.length){showToast('No hay ventas registradas');return;}
+let csv='\ufeffFecha,Hora,Producto,Cliente\n';
+sales.forEach(s=>{
+const d=new Date(s.fecha);
+const fecha=d.toLocaleDateString('es-CL');
+const hora=d.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
+csv+=`${fecha},${hora},"${s.producto}","${s.cliente}"\n`;
+});
+const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;a.download=`ventas_${new Date().toISOString().slice(0,10)}.csv`;
+document.body.appendChild(a);a.click();document.body.removeChild(a);
+URL.revokeObjectURL(url);
+showToast('Archivo descargado');
 }
 
 function renderSQuiz(){
