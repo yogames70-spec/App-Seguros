@@ -238,3 +238,25 @@ header{padding:16px 20px;display:flex;align-items:center;justify-content:space-b
 .estrategia-tip-item{font-size:13px;color:var(--text);line-height:1.6;padding:4px 0}
 .ventas-frase.gradient-text{background:linear-gradient(135deg,#7c5cfc,#00c896,#ff5a8a,#ff9f2e);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite;font-family:'Inter',sans-serif;font-style:normal;font-size:18px;font-weight:900;line-height:1.5;letter-spacing:-0.3px}
 .tip-text{transition:opacity .3s ease}
+
+/* DESAFIO */
+.desafio-card{background:linear-gradient(135deg,#1a1a2e,#2d1b4e);border-radius:var(--radius);padding:20px;margin-bottom:16px;color:#fff}
+.desafio-header{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--accent4);margin-bottom:8px}
+.desafio-text{font-size:14px;line-height:1.6;font-weight:500}
+
+/* DETECTOR */
+.detector-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;box-shadow:var(--shadow)}
+.detector-tramite{font-size:14px;font-weight:700;color:var(--accent2);flex:1;min-width:120px}
+.detector-arrow{font-size:18px;font-weight:900;color:var(--accent1)}
+.detector-producto{font-size:14px;font-weight:700;color:var(--accent1)}
+.detector-porque{width:100%;font-size:12px;color:var(--text2);line-height:1.5;margin-top:4px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* FRASES CIERRE */
+.frase-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.frase-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent4),var(--accent3));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0}
+.frase-text{font-size:14px;color:var(--text);line-height:1.5;font-weight:500;font-style:italic}
+
+/* OBJECIONES */
+.objecion-resp{padding:8px 0;border-bottom:1px solid var(--border)}
+.objecion-resp:last-child{border-bottom:none}
+.objecion-resp-num{font-size:11px;font-weight:700;color:var(--accent1);text-transform:uppercase;letter-spacing:1px}
