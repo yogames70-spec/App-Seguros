@@ -2,7 +2,7 @@
 let DB=null,state={xp:0,level:1,streak:0,ventas:0,lastDay:null,activities:[],quizDone:[],logros:[],metaMensual:0};
 const LEVELS=[{n:'Novato',xp:100},{n:'Aprendiz',xp:250},{n:'Vendedor',xp:500},{n:'Experto',xp:1000},{n:'Maestro',xp:2000},{n:'Leyenda',xp:5000}];
 const TIPS=["El SONAP cuesta solo 0.16 UF/mes. 1 de cada 3 personas desarrollará cáncer. Úsalo como argumento.","El seguro de Pérdida Total es perfecto para autos viejos: bajo costo, alta protección.","Chile es país sísmico. Todo hogar DEBERÍA tener seguro de incendio con cobertura sísmica.","El Seguro Muerte Accidental con Ahorro: 50% de la prima se devuelve como ahorro. No es gasto, es inversión.","Sale Seguro Plus cubre hasta 20 UF si te asaltan en el cajero. Perfecto para clientes que retiran efectivo.","SOAP es venta segura: todo auto lo necesita por ley para circular.","Seguro Viaje: una noche de hospital en el extranjero puede costar millones. Este seguro lo cubre.","Para Pymes: ofrecer salud complementaria mejora retención de talento. Mínimo 5 trabajadores.","RCI obligatorio para viajar en auto a Argentina. Temporada alta = ventas masivas.","El Full Ambulatorio reembolsa 70% de consultas SIN deducible. Complementa FONASA/Isapre."];
-const QUOTES=["No existe el vendedor perfecto, pero sí existe el vendedor que nunca deja de intentarlo. Hoy es tu día para demostrarlo.","Cada persona que se sienta frente a ti tiene una historia, un miedo y una familia que proteger. Tu trabajo es ayudarle a dar ese paso.","El éxito en ventas no se mide solo en números. Se mide en cuántas familias duermen tranquilas gracias a ti.","No viniste hasta acá para ser promedio. Viniste a romperla, a superarte, a ser la mejor versión de ti mismo cada día.","La diferencia entre un buen vendedor y uno extraordinario es simple: el extraordinario nunca deja de prepararse.","Hoy alguien necesita exactamente lo que tú ofreces. Solo tienes que encontrarlo, escucharlo y conectar con su necesidad.","Los grandes vendedores no nacen, se hacen. Se hacen con práctica, con estudio y con la convicción de que lo que ofrecen cambia vidas.","No vendas por vender. Vende porque genuinamente crees que tu producto puede hacer la diferencia en la vida de esa persona."];
+const QUOTES=["Si solo haces lo que ya sabes hacer, nunca serás más de lo que ya eres. Hoy es el día de ir más allá.","Nadie dijo que sería fácil. Pero tú no viniste acá buscando lo fácil. Viniste a romperla.","El dolor de la disciplina pesa gramos. El dolor del arrepentimiento pesa toneladas. Elige bien.","No te levantaste hoy para ser promedio. Te levantaste para demostrar de qué estás hecho.","Mientras otros duermen, tú te preparas. Mientras otros se rinden, tú insistes. Esa es la diferencia.","¿Esto es lo que soñaste o no? Entonces deja de quejarte y ve a buscarlo con todo.","El mundo no te debe nada. Pero tú te debes a ti mismo dar el máximo cada maldito día.","La comodidad es el enemigo del crecimiento. Si no te incomoda, no te está haciendo crecer.","Los que dicen que no se puede, que se hagan a un lado de los que lo están haciendo.","Hoy vas a salir ahí y vas a dejar todo. Sin excusas, sin medias tintas. Todo o nada."];
 const CTAS=["A romperla","Vamos con todo","A cerrar ventas","Hoy es el día","A conquistar","Dale con todo","Sin límites","A ganar"];
 
 // Init
@@ -51,11 +51,12 @@ const ESTRATEGIAS=[
 ];
 const VENTAS_TIPS=["Nunca hables mal de la competencia. Habla bien de tu producto y deja que el cliente compare solo.","El 80% de las ventas se cierran después del 5to contacto. Si te rinden al primer 'no', estás dejando dinero en la mesa.","Usa el nombre del cliente al menos 3 veces durante la conversación. Psicológicamente, escuchar tu nombre activa la confianza.","Sonríe cuando hables por teléfono. Aunque no te vean, la sonrisa cambia el tono de tu voz y el cliente lo percibe.","El mejor momento para ofrecer un seguro es justo después de resolver el trámite por el que vino. El cliente está agradecido y receptivo.","Pregunta más de lo que afirmas. El que pregunta controla la conversación. El que solo habla, la pierde.","Regla de oro del cierre: después de hacer la pregunta de cierre, CÁLLATE. El primero que habla, pierde.","Los primeros 7 segundos son todo. Saluda con energía, mira a los ojos y sonríe. La primera impresión define el resto."];
 
+let tipInterval=null;
 function renderVentas(){
 const frase=VENTAS_FRASES[Math.floor(Math.random()*VENTAS_FRASES.length)];
 const tip=VENTAS_TIPS[Math.floor(Math.random()*VENTAS_TIPS.length)];
 let h=`<div class="ventas-hero"><div class="ventas-frase gradient-text">${frase}</div></div>`;
-h+=`<div class="tip-card"><div class="tip-header">💡 Tip del Vendedor Pro</div><div class="tip-text">${tip}</div></div>`;
+h+=`<div class="tip-card"><div class="tip-header">💡 Tip del Vendedor Pro</div><div class="tip-text" id="ventasTipText">${tip}</div></div>`;
 h+=`<h2 class="section-title">Secciones</h2><div class="ventas-sections">`;
 h+=`<div class="action-btn" onclick="showVentasSeccion('estrategias')" style="padding:20px"><span class="action-icon">♟️</span><span>Estrategias</span><span style="font-size:11px;color:var(--text3)">8 técnicas pro</span></div>`;
 h+=`<div class="action-btn" onclick="navigateTo('simulador')" style="padding:20px"><span class="action-icon">🎭</span><span>Entrenamiento</span><span style="font-size:11px;color:var(--text3)">Practicar ventas</span></div>`;
@@ -63,6 +64,8 @@ h+=`<div class="action-btn" onclick="navigateTo('quiz')" style="padding:20px"><s
 h+=`</div>`;
 h+=`<div id="ventasSeccionContent"></div>`;
 document.getElementById('ventasContent').innerHTML=h;
+if(tipInterval)clearInterval(tipInterval);
+tipInterval=setInterval(()=>{const el=document.getElementById('ventasTipText');if(el){el.style.opacity='0';setTimeout(()=>{el.textContent=VENTAS_TIPS[Math.floor(Math.random()*VENTAS_TIPS.length)];el.style.opacity='1';},300);}},30000);
 }
 
 function showVentasSeccion(sec){
