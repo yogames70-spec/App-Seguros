@@ -165,6 +165,73 @@ function setupNav(){document.querySelectorAll('.nav-btn').forEach(b=>b.addEventL
 // Streak
 function checkStreak(){const today=new Date().toDateString();if(state.lastDay===today)return;if(state.lastDay===new Date(Date.now()-86400000).toDateString()){state.streak++;}else if(state.lastDay!==today){state.streak=state.lastDay?0:1;}state.lastDay=today;saveState();}
 
+// Seguros Quiz
+const SEGUROS_QUIZ=[
+{q:"¿Cuál es el seguro obligatorio para circular con un vehículo en Chile?",opts:["SONAP","SOAP","RCI","Sale Seguro"],correct:1,why:"El SOAP (Seguro Obligatorio de Accidentes Personales) es obligatorio por ley para renovar el permiso de circulación."},
+{q:"¿Qué seguro necesita un cliente que viaja en auto a Argentina?",opts:["SOAP","Seguro Viaje","RCI","Seguro Automotriz"],correct:2,why:"El RCI (Responsabilidad Civil Internacional) es obligatorio para viajar con vehículo propio a países vecinos."},
+{q:"El SONAP cubre principalmente:",opts:["Robo de tarjetas","Diagnóstico oncológico y muerte accidental","Hospitalización","Daños al hogar"],correct:1,why:"El SONAP es el Seguro Oncológico y de Muerte Accidental. Cubre diagnóstico de cáncer primario y fallecimiento por accidente."},
+{q:"¿Cuánto cuesta el SONAP aproximadamente al mes?",opts:["$20.000","$50.000","$6.000 (0.16 UF)","$15.000"],correct:2,why:"El SONAP cuesta desde 0.16 UF mensuales, aproximadamente $6.000. Es uno de los seguros más económicos."},
+{q:"¿Qué seguro protege al cliente si lo asaltan en el cajero automático?",opts:["SONAP","Seguro Hogar","Sale Seguro Plus","Seguro de Vida"],correct:2,why:"Sale Seguro Plus cubre uso forzado en cajero (20 UF), coacción en ventanilla (20 UF) y robo con violencia (10 UF)."},
+{q:"¿El Seguro Muerte Accidental con Ahorro devuelve parte de la prima?",opts:["No, nunca","Sí, el 25%","Sí, el 50%","Sí, el 100%"],correct:2,why:"El 50% de cada prima se destina a un fondo de ahorro garantizado con rentabilidad de 1% + UF anual."},
+{q:"¿Qué seguro es ideal para un cliente que paga dividendo hipotecario?",opts:["SOAP","Sale Seguro","Seguro Incendio Hogar","Seguro Viaje"],correct:2,why:"Si paga dividendo tiene casa. El seguro del crédito protege al banco, no al cliente. Necesita Seguro Hogar propio."},
+{q:"¿Cuántos planes tiene el Seguro Accidentes Personales?",opts:["1 plan","2 planes: Plus y Full","3 planes","4 planes"],correct:1,why:"Tiene 2 planes: Plus (0.43 UF/año, 400 UF) y Full (0.67 UF/año, 700 UF + invalidez 2/3)."},
+{q:"¿El Seguro Accidentes Personales requiere Declaración de Salud?",opts:["Sí, siempre","Solo mayores de 60","No requiere","Solo el plan Full"],correct:2,why:"No requiere Declaración de Salud. Esto facilita mucho la contratación."},
+{q:"¿Qué cubre el Seguro Protección Desgravamen?",opts:["Robo de auto","Saldo del crédito si el titular fallece","Gastos médicos","Equipaje de viaje"],correct:1,why:"Si el titular fallece o queda inválido, el seguro paga el saldo pendiente del crédito. La familia no hereda la deuda."},
+{q:"¿Cuál es la edad máxima de ingreso al Seguro Accidentes Personales?",opts:["65 años","70 años","78 años y 364 días","Sin límite"],correct:2,why:"La edad máxima de ingreso es 78 años y 364 días, con permanencia hasta 79 años y 364 días."},
+{q:"¿Qué seguro recomiendas a una mamá que viene con su hijo pequeño?",opts:["SOAP","SONAP","RCI","Seguro Pyme"],correct:1,why:"El SONAP activa el instinto protector de los padres. Protege a la familia ante imprevistos de salud y accidentes."},
+{q:"El Seguro Full Ambulatorio cubre:",opts:["Hospitalización completa","Solo emergencias","Consultas, exámenes y cirugía ambulatoria","Solo medicamentos"],correct:2,why:"Reembolsa el 70% de consultas médicas ambulatorias, exámenes diagnósticos y cirugía ambulatoria. Sin deducible."},
+{q:"¿Cuántos trabajadores mínimo necesita una Pyme para el seguro grupal?",opts:["2","3","5","10"],correct:2,why:"El Complementario de Salud Pyme requiere mínimo 5 trabajadores que representen al menos 75% de la dotación."},
+{q:"¿Qué seguro cubre daños por terremoto en el hogar?",opts:["Sale Seguro","SONAP","Seguro Incendio Hogar (con cobertura sísmica)","Seguro de Vida"],correct:2,why:"El Seguro Incendio Hogar tiene cobertura opcional de sismo, inundación, maremoto y tsunami. Chile es país sísmico."},
+{q:"¿Qué diferencia al plan Full del Plus en Accidentes Personales?",opts:["El precio solamente","El Full incluye Invalidez Total y Permanente 2/3","El Full cubre enfermedades","No hay diferencia"],correct:1,why:"El plan Full (0.67 UF/año, 700 UF) incluye cobertura de Invalidez Total y Permanente 2/3 accidental, que el Plus no tiene."},
+{q:"¿El Seguro Viaje cubre deportes extremos?",opts:["Sí, todos","Solo algunos","No, están excluidos","Solo con plan Premium"],correct:2,why:"Los deportes extremos están excluidos de la cobertura estándar del Seguro Viaje."},
+{q:"¿Qué pasa si un asegurado de Accidentes Personales tiene un accidente conduciendo ebrio?",opts:["Está cubierto igual","No está cubierto, es exclusión","Cubre solo gastos médicos","Depende del plan"],correct:1,why:"La conducción bajo influencia del alcohol es exclusión expresa tanto para muerte accidental como para invalidez."},
+{q:"¿Cuál es el plazo para denunciar un siniestro del Seguro Accidentes Personales?",opts:["30 días","90 días","240 días corridos","1 año"],correct:2,why:"El plazo máximo es 240 días corridos contados desde que se toma conocimiento del siniestro."},
+{q:"¿Qué seguro le conviene a un cliente que compra un celular nuevo?",opts:["SONAP","Seguro Hogar","Seguro Retail - Más Seguros","SOAP"],correct:2,why:"El Seguro Retail cubre robo del producto, daño accidental y extensión de garantía para compras con tarjeta BancoEstado."}
+];
+let sqState={idx:0,score:0,total:SEGUROS_QUIZ.length,answered:false};
+
+function showSegurosTab(tab){
+const el=document.getElementById('segurosTabContent');
+if(tab==='catalogo'){
+el.innerHTML=`<div class="search-box"><input type="text" id="searchInput" placeholder="Buscar seguro..." oninput="filterProducts()"></div><div class="category-tabs" id="categoryTabs"></div><div id="productList" class="product-list"></div>`;
+renderProductos();
+} else {
+sqState={idx:0,score:0,total:SEGUROS_QUIZ.length,answered:false};
+renderSQuiz();
+}
+}
+
+function renderSQuiz(){
+const el=document.getElementById('segurosTabContent');
+if(sqState.idx>=sqState.total){
+const pct=Math.round((sqState.score/sqState.total)*100);
+el.innerHTML=`<div class="quiz-result"><div class="quiz-score">${pct}%</div><div class="quiz-msg">${pct===100?'Perfecto, dominas todos los seguros':pct>=70?'Muy bien, pero repasa los que fallaste':'Necesitas repasar el catálogo de seguros'}</div><p style="color:var(--text2);margin-bottom:24px">${sqState.score}/${sqState.total} correctas</p><button class="primary-btn" onclick="sqState={idx:0,score:0,total:SEGUROS_QUIZ.length,answered:false};renderSQuiz()">Reintentar</button></div>`;
+if(pct>=70)addXP(25);
+return;
+}
+const q=SEGUROS_QUIZ[sqState.idx];
+let h=`<div class="quiz-card"><div class="quiz-progress">Pregunta ${sqState.idx+1} de ${sqState.total}</div>`;
+h+=`<div class="quiz-question">${q.q}</div><div class="quiz-options">`;
+q.opts.forEach((o,i)=>{h+=`<button class="quiz-option" onclick="answerSQuiz(${i})" id="sqopt${i}">${o}</button>`;});
+h+=`</div><div id="sqFeedback"></div></div>`;
+el.innerHTML=h;
+}
+
+function answerSQuiz(i){
+if(sqState.answered)return;
+sqState.answered=true;
+const q=SEGUROS_QUIZ[sqState.idx];
+const isCorrect=i===q.correct;
+if(isCorrect)sqState.score++;
+document.getElementById('sqopt'+i).classList.add(isCorrect?'correct':'wrong');
+if(!isCorrect)document.getElementById('sqopt'+q.correct).classList.add('correct');
+let fb=`<div class="sim-msg feedback ${isCorrect?'good':'bad'}" style="margin-top:12px">`;
+fb+=`<div class="sender">${isCorrect?'Correcto':'Incorrecto'}</div>${q.why}</div>`;
+if(!isCorrect){fb+=`<div class="sim-msg correction" style="margin-top:8px"><div class="sender">Respuesta correcta:</div>${q.opts[q.correct]}</div>`;}
+fb+=`<button class="primary-btn" style="margin-top:12px;width:100%" onclick="sqState.idx++;sqState.answered=false;renderSQuiz()">Siguiente</button>`;
+document.getElementById('sqFeedback').innerHTML=fb;
+}
+
 // XP System
 function addXP(amount){state.xp+=amount;let lvl=0;for(let i=0;i<LEVELS.length;i++){if(state.xp>=LEVELS[i].xp)lvl=i+1;}state.level=Math.max(1,lvl+1>LEVELS.length?LEVELS.length:lvl+1);saveState();renderXP();showToast('+'+amount+' XP');confetti();}
 function renderXP(){const lv=Math.min(state.level,LEVELS.length)-1;const cur=LEVELS[lv];const prev=lv>0?LEVELS[lv-1].xp:0;const pct=Math.min(100,((state.xp-prev)/(cur.xp-prev))*100);document.getElementById('xpLevel').textContent=state.level;document.getElementById('xpText').textContent=state.xp+'/'+cur.xp+' XP';document.getElementById('xpFill').style.width=pct+'%';}

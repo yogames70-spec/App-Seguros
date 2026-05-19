@@ -413,16 +413,34 @@
           "id": "viaje-protegido",
           "nombre": "Seguro Viaje + Protegido",
           "descripcion": "Asistencia médica, equipaje y retrasos para viajes nacionales e internacionales.",
-          "coberturas": [
-            "Emergencias médicas en el extranjero",
-            "Equipaje perdido o dañado",
-            "Cancelación de viaje",
-            "Retrasos de vuelo"
-          ],
+          "coberturas": ["Emergencias médicas en el extranjero","Equipaje perdido o dañado","Cancelación de viaje","Retrasos de vuelo"],
           "planes": ["Standard", "Full", "Premium"],
           "requisitos": ["Edad: 18 a 68 años"],
           "exclusiones": ["Condiciones preexistentes", "Deportes extremos"],
-          "tip_venta": "Temporada de vacaciones = oportunidad. 'Si se enferma en el extranjero, una noche de hospital puede costar millones. Este seguro lo cubre.'"
+          "tip_venta": "Temporada de vacaciones = oportunidad. 'Si se enferma en el extranjero, una noche de hospital puede costar millones.'"
+        }
+      ]
+    },
+    {
+      "id": "credito",
+      "nombre": "Crédito y Desgravamen",
+      "aseguradora": "MetLife / BCI Seguros",
+      "productos": [
+        {
+          "id": "desgravamen",
+          "nombre": "Seguro Protección Desgravamen",
+          "descripcion": "Protege al deudor y su familia: si el titular fallece o queda con invalidez, el seguro paga el saldo del crédito pendiente.",
+          "coberturas": ["Muerte del titular: paga saldo insoluto del crédito","Invalidez total y permanente: paga saldo del crédito","Cobertura automática al contratar crédito"],
+          "requisitos": ["Asociado a un crédito BancoEstado (consumo o hipotecario)","Edad según condiciones del crédito"],
+          "tip_venta": "Va incluido en muchos créditos. Pero explicar al cliente que lo protege es clave: 'Si le pasa algo, su familia NO hereda la deuda.'"
+        },
+        {
+          "id": "retail-mas-seguros",
+          "nombre": "Seguro Retail - Más Seguros",
+          "descripcion": "Seguro de protección para compras y productos adquiridos en retail. Cubre robo, daño accidental y extensión de garantía.",
+          "coberturas": ["Robo del producto comprado","Daño accidental","Extensión de garantía del fabricante"],
+          "requisitos": ["Compra realizada con tarjeta BancoEstado","Activación dentro del plazo establecido"],
+          "tip_venta": "Para clientes que compran electrónica o electrodomésticos. 'Si se le cae el celular o se lo roban, este seguro se lo repone.'"
         }
       ]
     }

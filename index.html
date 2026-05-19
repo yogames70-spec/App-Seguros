@@ -9,7 +9,7 @@
 <title>Sales Command Center</title>
 <link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css?v=20260519b">
+<link rel="stylesheet" href="app.css?v=20260519c">
 </head>
 <body>
 <div id="app">
@@ -112,13 +112,19 @@
       <section id="page-productos" class="page">
         <div class="page-header">
           <button class="back-btn" onclick="navigateTo('home')">←</button>
-          <h1>Catálogo de Seguros</h1>
+          <h1>Seguros</h1>
         </div>
-        <div class="search-box">
-          <input type="text" id="searchInput" placeholder="Buscar seguro..." oninput="filterProducts()">
+        <div class="ventas-sections" style="grid-template-columns:1fr 1fr;margin-bottom:16px">
+          <div class="action-btn" onclick="showSegurosTab('catalogo')" id="tabCatalogo" style="padding:16px"><span class="action-icon">📋</span><span>Catálogo</span></div>
+          <div class="action-btn" onclick="showSegurosTab('squiz')" id="tabSQuiz" style="padding:16px"><span class="action-icon">🧠</span><span>Quiz Seguros</span></div>
         </div>
-        <div class="category-tabs" id="categoryTabs"></div>
-        <div id="productList" class="product-list"></div>
+        <div id="segurosTabContent">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar seguro..." oninput="filterProducts()">
+          </div>
+          <div class="category-tabs" id="categoryTabs"></div>
+          <div id="productList" class="product-list"></div>
+        </div>
       </section>
 
       <!-- PRODUCT DETAIL PAGE -->
@@ -230,6 +236,6 @@
   </div>
 </div>
 
-<script src="app.js?v=20260519b"></script>
+<script src="app.js?v=20260519c"></script>
 </body>
 </html>
